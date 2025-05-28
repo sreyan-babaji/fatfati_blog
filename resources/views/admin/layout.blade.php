@@ -20,22 +20,22 @@
             <h3><i class="bi bi-journal-bookmark-fill"></i> ব্লগ এডমিন</h3>
         </div>
         <ul class="sidebar-menu">
-            <li >
-                <a href="{{ route('dashboard') }}"><i class="bi bi-speedometer2"></i> ড্যাশবোর্ড</a>
+            <li class="{{ Route::is('dashboard') ? 'bg-danger' : '' }}">
+                <a href="{{ route('dashboard') }}"><i class=" bi bi-speedometer2"></i> ড্যাশবোর্ড</a>
             </li>
-            <li>
+            <li class="{{ Route::is('post_management') ? 'bg-danger' : '' }}">
                 <a href="{{ route('post_management') }}"><i class="bi bi-file-earmark-text"></i> পোস্ট ম্যানেজমেন্ট</a>
             </li>
-            <li>
+            <li class="{{ Route::is('category_manage') ? 'bg-danger' : '' }}">
                 <a href="{{ route('category_manage') }}"><i class="bi bi-grid"></i> ক্যাটাগরি</a>
             </li>
-            <li>
+            <li class="{{ Route::is('users') ? 'bg-danger' : '' }}">
                 <a href="{{ route('users') }}"><i class="bi bi-people"></i> ব্যবহারকারী</a>
             </li>
-            <li>
+            <li class="{{ Route::is('comments') ? 'bg-danger' : '' }}">
                 <a href="{{ route('comments') }}"><i class="bi bi-chat-left-text"></i> কমেন্টস</a>
             </li>
-            <li>
+            <li class="{{ Route::is('settings') ? 'bg-danger' : '' }}">
                 <a href="{{ route('settings') }}"><i class="bi bi-gear"></i> সেটিংস</a>
             </li>
             <li>
