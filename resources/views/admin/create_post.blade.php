@@ -12,8 +12,8 @@
         <div class="form-section">
             <h4><i class="bi bi-info-circle me-2"></i> মৌলিক তথ্য</h4>
             <div class="mb-3">
-                <label for="postTitle" class="form-label">পোস্ট শিরোনাম</label>
-                <input type="text" name="post_title" class="form-control" id="postTitle" placeholder="আপনার পোস্টের শিরোনাম লিখুন" >
+                <label for="postTitle" class="form-label @error('post_title') text-danger @enderror">পোস্ট শিরোনাম @error('post_title')  {{ $message }} @enderror</label>
+                <input type="text" name="post_title" value="{{ old('post_title') }}" class="form-control" id="postTitle" placeholder="আপনার পোস্টের শিরোনাম লিখুন" >
             </div>
             <div class="mb-3">
                 <label for="postSlug" class="form-label">URL স্লাগ</label>

@@ -39,17 +39,44 @@ class PostController extends Controller
 
     //Post create input/store
     public function post_create_input(Request $request){
-        $post_input = new Post();
-        $post_input->post_title = $request->post_title;
-        $post_input->post_category = $request->post_category;
-        $post_input->slug = $request->slug;
-        $post_input->post_content = $request->post_content;
-        $post_input->author = "boss";
 
-        if($post_input->save()){
-            return redirect()->back()->with('success','Post create successfully');
+    $request->validate([
+            'post_title'    => 'required|string|max:255',
+            'post_category' => 'required|string|max:100',
+            'slug'          => 'required|string|max:255|unique:posts,slug',
+            'post_content'  => 'required|string',
+        ], [ 
+            //custom error massages
+            'post_title.required'    => 'Post title dite hobe.',
+            'post_title.string'      => 'Post title string hote hobe.',
+            'post_title.max'         => 'Post title 255 characters er beshi hote parbe na.',
+
+            'post_category.required' => 'Post category dite hobe.',
+            'post_category.string'   => 'Post category string hote hobe.',
+            'post_category.max'      => 'Post category 100 characters er beshi hote parbe na.',
+
+            'slug.required'          => 'Slug dite hobe.',
+            'slug.string'            => 'Slug string hote hobe.',
+            'slug.max'               => 'Slug 255 characters er beshi hote parbe na.',
+            'slug.unique'            => 'Ei slug already use kora hoyeche.',
+
+            'post_content.required'  => 'Post content dite hobe.',
+            'post_content.string'    => 'Post content string hote hobe.',
+        ]);
+        // Step 2: Store the post
+        $post_input = new Post();
+        $post_input->post_title    = $request->post_title;
+        $post_input->post_category = $request->post_category;
+        $post_input->slug          = $request->slug;
+        $post_input->post_content  = $request->post_content;
+        $post_input->author        = "boss";
+
+        if ($post_input->save()) {
+            return redirect()->back()->with('success', 'Post created successfully');
+        } 
+        else {
+            return redirect()->back()->with('failed', 'Post creation failed');
         }
-        else{ return redirect()->back()->with('falied','Post not create failed');}
     }
       //post view
     public function blog_post_view(){
