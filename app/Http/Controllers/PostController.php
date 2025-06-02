@@ -47,7 +47,7 @@ class PostController extends Controller
             'post_content'  => 'required|string',
         ], [ 
             //custom error massages
-            'post_title.required'    => 'Post title dite hobe.',
+            'post_title.required'    => '! পোষ্টের টাইটেল দিন',
             'post_title.string'      => 'Post title string hote hobe.',
             'post_title.max'         => 'Post title 255 characters er beshi hote parbe na.',
 

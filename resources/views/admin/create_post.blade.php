@@ -12,11 +12,19 @@
         <div class="form-section">
             <h4><i class="bi bi-info-circle me-2"></i> মৌলিক তথ্য</h4>
             <div class="mb-3">
-                <label for="postTitle" class="form-label @error('post_title') text-danger @enderror">পোস্ট শিরোনাম @error('post_title')  {{ $message }} @enderror</label>
+                @if($errors->has('post_title'))
+                    <label for="postTitle" class=" text-danger "> @error('post_title')  {{ $message }} @enderror</label>
+                @else
+                    <label for="postTitle" class="form-label">পোস্ট শিরোনাম </label>
+                @endif
                 <input type="text" name="post_title" value="{{ old('post_title') }}" class="form-control" id="postTitle" placeholder="আপনার পোস্টের শিরোনাম লিখুন" >
             </div>
             <div class="mb-3">
+                @if($errors->has('slug'))
+                    <label for="postSlug" class=" text-danger "> {{ $errors->first('slug') }}</label>
+                @else
                 <label for="postSlug" class="form-label">URL স্লাগ</label>
+                @endif
                 <input type="text" name="slug" class="form-control" id="postSlug" placeholder="পোস্টের URL অংশ">
                 <div class="form-text">ইংরেজিতে ছোট হাতের অক্ষর, সংখ্যা এবং হাইফেন ব্যবহার করুন</div>
             </div>
@@ -27,7 +35,6 @@
             <h4><i class="bi bi-file-text me-2"></i> কন্টেন্ট</h4>
             <div class="mb-3">
                 <textarea id="postContent" name="post_content" class="form-control " placeholder="এখানে কন্টেন্ট লিখুন">
-
                 </textarea>
             </div>
         </div>
@@ -50,7 +57,7 @@
                 <div class="col-md-8 mb-3">
                     <label for="postCategory" class="form-label">ক্যাটাগরি</label>
                     <select name="post_category" class="form-select" id="postCategory" required>
-                        <option selected disabled value="">ক্যাটাগরি নির্বাচন করুন</option>
+                        <option selected disabled value="{{ old('$category->id') }}">ক্যাটাগরি নির্বাচন করুন</option>
                         @foreach($all_category as $category) 
                         <option value="{{$category->id}}">{{$category->category_name}}</option>
                         @endforeach
