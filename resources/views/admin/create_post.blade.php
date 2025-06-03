@@ -32,7 +32,7 @@
 
         <!-- কন্টেন্ট সেকশন -->
         <div class="form-section ">
-            <h4><i class="bi bi-file-text me-2"></i> কন্টেন্ট</h4>
+            <h4 class="@error('post_content') text-danger @enderror"><i class="bi bi-file-text me-2 "></i>@error('post_content') {{ $message }} @else কন্টেন্ট @enderror</h4>
             <div class="mb-3">
                 <textarea id="postContent" name="post_content" class="form-control " placeholder="এখানে কন্টেন্ট লিখুন">
                 </textarea>
@@ -56,8 +56,8 @@
             <div class="row">
                 <div class="col-md-8 mb-3">
                     <label for="postCategory" class="form-label">ক্যাটাগরি</label>
-                    <select name="post_category" class="form-select" id="postCategory" required>
-                        <option selected disabled value="{{ old('$category->id') }}">ক্যাটাগরি নির্বাচন করুন</option>
+                    <select name="post_category" value="{{ old('$category->id') }}" class="form-select" id="postCategory" required>
+                        <option selected disabled value="">ক্যাটাগরি নির্বাচন করুন</option>
                         @foreach($all_category as $category) 
                         <option value="{{$category->id}}">{{$category->category_name}}</option>
                         @endforeach

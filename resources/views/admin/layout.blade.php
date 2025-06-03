@@ -23,10 +23,10 @@
             <li class="{{ Route::is('dashboard') ? 'active' : '' }}">
                 <a href="{{ route('dashboard') }}"><i class=" bi bi-speedometer2"></i> ড্যাশবোর্ড</a>
             </li>
-            <li class="{{ Route::is('post_management') ? 'active' : '' }}">
+            <li class="{{ Route::is('post_management','post_create_view') ? 'active' : '' }}">
                 <a href="{{ route('post_management') }}"><i class="bi bi-file-earmark-text"></i> পোস্ট ম্যানেজমেন্ট</a>
             </li>
-            <li class="{{ Route::is('category_manage') ? 'active' : '' }}">
+            <li class="{{ Route::is('category_manage','category_create_view') ? 'active' : '' }}">
                 <a href="{{ route('category_manage') }}"><i class="bi bi-grid"></i> ক্যাটাগরি</a>
             </li>
             <li class="{{ Route::is('users') ? 'active' : '' }}">

@@ -18,7 +18,7 @@ Route::get('about',[Blog_site::class,'site_about'])->name('site_about');
 Route::get('contact',[Blog_site::class,'site_contact'])->name('site_contact');
 
 
-/*-------amidin pannel all route-----------*/
+/*-------admin pannel all route-----------*/
 //Category
 route::get('category-manage',[CategoryController::class,'category_manage'])->name('category_manage');
 route::get('category-create-view',[CategoryController::class,'category_create_view'])->name('category_create_view');
