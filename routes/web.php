@@ -23,16 +23,17 @@ Route::get('contact',[Blog_site::class,'site_contact'])->name('site_contact');
 route::get('category-manage',[CategoryController::class,'category_manage'])->name('category_manage');
 route::get('category-create-view',[CategoryController::class,'category_create_view'])->name('category_create_view');
 route::post('category-create-input',[CategoryController::class,'category_create_input'])->name('category_create_input');
-//Post manage
-route::get('category-search/{categories_id}',[PostController::class,'category_search'])->name('category_search');
+//Post management
+route::get('status-search/{status}',[PostController::class,'status_search'])->name('status_search');
+route::get('category-search/{category_id}',[PostController::class,'category_search'])->name('category_search');
 route::post('post-search',[PostController::class,'post_search'])->name('post_search');
 route::get('post-management',[PostController::class,'post_management'])->name('post_management');
 route::get('post-create-view',[PostController::class,'post_create_view'])->name('post_create_view');
 route::post('post-create-input',[PostController::class,'post_create_input'])->name('post_create_input');
 // Posts view
-route::get('post-view',[PostController::class,'blog_post_view'])->name('blog_post_view');
+route::get('post-view/{post_id}',[PostController::class,'blog_post_view'])->name('blog_post_view');
 // Posts edit
-Route::get('post-edit-view', [PostController::class, 'post_edit_view'])->name('post_edit_view');
+Route::get('post-edit-view/{post_id}', [PostController::class, 'post_edit_view'])->name('post_edit_view');
 Route::put('post-update', [PostController::class, 'update'])->name('post_update');
 // Posts delete------------------------
 //dashboard

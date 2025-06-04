@@ -74,9 +74,10 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="postStatus" class="form-label">স্ট্যাটাস</label>
-                    <select class="form-select" id="postStatus">
-                        <option value="draft">খসড়া</option>
+                    <select class="form-select" name="post_status" id="postStatus" required>
                         <option value="publish" selected>প্রকাশিত</option>
+                        <option value="draft">খসড়া</option>
+                        <option value="archive" >আর্কাইভ</option>
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">

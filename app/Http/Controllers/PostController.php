@@ -15,17 +15,24 @@ class PostController extends Controller
         $title = 'Post Search result';
         return view('admin.post_management',compact('post_data','title','categories'));
     }
-     //category search
+    //category search
      public function category_search($category_id){
         $categories=Category::select('id','category_name')->get();
         $post_data = Post::where('post_category', $category_id)->get();
         $title = 'category Search result';
         return view('admin.post_management',compact('post_data','title','categories'));
     }
-    //Post manage view
+    //status search
+     public function status_search($status){
+        $categories=Category::select('id','category_name')->get();
+        $post_data = Post::where('post_status', $status)->get();
+        $title = 'post_status Search result';
+        return view('admin.post_management',compact('post_data','title','categories'));
+    }
+    //Post management view
     public function post_management(){
         $categories=Category::select('id','category_name')->get();
-        $post_data=Post::select('id','post_category','post_title','post_img','post_content','author','slug','created_at','updated_at')->get();
+        $post_data=Post::select('id','post_category','post_title','post_img','post_status','post_content','author','slug','created_at','updated_at')->get();
         $title='Post Management';
         return view('admin.post_management',compact('post_data','title','categories'));
     }
@@ -45,6 +52,7 @@ class PostController extends Controller
             'post_category' => 'required|string|max:100',
             'slug'          => 'required|string|max:100|unique:posts,slug',
             'post_content'  => 'required|string',
+            'post_status'  => 'required|string',
         ], [ 
              //custom error massages
             'post_title.required'    => '! পোষ্টের টাইটেল দিন',
@@ -62,6 +70,8 @@ class PostController extends Controller
 
             'post_content.required'  => '! পোষ্ট কন্টেন্ট দিন',
             'post_content.string'    => '! পোষ্ট কন্টেন্ট অক্ষরের হতে হবে',
+
+            'post_status'            => '!পোষ্ট স্টেটাস চেক করুন'
         ]);
         // Step 2: Store the post
         $post_input = new Post();
@@ -70,6 +80,7 @@ class PostController extends Controller
         $post_input->slug          = $request->slug;
         $post_input->post_content  = $request->post_content;
         $post_input->author        = "boss";
+        $post_input->post_status   = $request->post_status;
 
         if ($post_input->save()) {
             return redirect()->back()->with('success', 'Post created successfully');
@@ -78,14 +89,18 @@ class PostController extends Controller
             return redirect()->back()->with('failed', 'Post creation failed');
         }
     }
-      //post view
-    public function blog_post_view(){
-        $post_data=Post::select('id','post_category','post_title','post_img','post_content','author','slug','created_at','updated_at')->get();
-        return view('admin.blog_post_view',compact('post_data'),['title' => 'view_post']);
+    //post view
+    public function blog_post_view($post_id){
+        $postdata=Post::where('id',$post_id)->first();
+        return view('admin.blog_post_view',compact('postdata'),['title' => 'view_post']);
     }
     //post edit
-    public function post_edit_view(){
-        return view('admin.post_edit',['title' => 'edit_post']);
+    public function post_edit_view($post_id){
+        $postdata=Post::where('id',$post_id)->first();
+        $categories=Category::select('id','category_name')->get();
+        $category_data = Category::select('id','category_name')->where('id',$postdata->post_category)->first();
+
+        return view('admin.post_edit',compact('postdata','categories','category_data'),['title' => 'edit_post']);
     }
   
 }

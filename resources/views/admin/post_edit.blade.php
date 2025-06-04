@@ -7,15 +7,18 @@
     <form action="#" method="POST" enctype="multipart/form-data">
       <div class="mb-3">
         <label for="editTitle" class="form-label">Post Title</label>
-        <input type="text" class="form-control" id="editTitle" name="title" value="Sample Blog Post Title" required>
+        <input type="text" class="form-control" id="editTitle" name="title" value="{{$postdata->post_title}}" required>
       </div>
 
       <div class="mb-3">
         <label for="editCategory" class="form-label">Category</label>
         <select class="form-select" id="editCategory" name="category" required>
-          <option value="tech" selected>Tech</option>
-          <option value="lifestyle">Lifestyle</option>
-          <option value="travel">Travel</option>
+        <option value="{{$category_data->id}}" selected>{{$category_data->category_name }}</option>
+        @foreach($categories as $category) 
+          @if($category_data->id != $category->id)
+          <option value="{{$category->id}}">{{$category->category_name}}</option>
+          @endif
+        @endforeach
         </select>
       </div>
 

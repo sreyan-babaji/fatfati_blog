@@ -8,7 +8,6 @@
     <div class="row justify-content-center">
         <div class="col-12 col-md-10 col-lg-8">
             <div class="card shadow-sm">
-                @foreach($post_data as $postdata)
                 <img src="{{ asset('Assets/img/one.jpg') }}" class="card-img-top img-fluid" alt="Post Image">
                 <div class="card-body">
                     <h2 class="card-title">{{$postdata->post_title}}</h2>
@@ -25,7 +24,6 @@
                         <a href="#" class="btn btn-danger">Delete Post</a>
                     </div>
                 </div>
-                @endforeach
             </div>
         </div>
     </div>

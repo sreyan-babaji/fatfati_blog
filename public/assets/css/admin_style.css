@@ -161,20 +161,25 @@
     vertical-align: middle;
 }
 
-.badge-published {
+.badge-published, .post-table .badge-published {
     background-color: var(--primary-light);
     color: var(--primary-dark);
     padding: 5px 10px;
     border-radius: 20px;
     font-weight: 600;
+    text-align: center; /* অনুভূমিকভাবে মাঝখানে আনুন */
+    vertical-align: middle; /* উল্লম্বভাবে মাঝখানে আনুন */
 }
 
-.badge-draft {
+.badge-draft, .post-table .badge-draft {
     background-color: var(--accent-color);
     color: var(--primary-dark);
     padding: 5px 10px;
     border-radius: 20px;
     font-weight: 600;
+    text-align: center; /* অনুভূমিকভাবে মাঝখানে আনুন */
+    vertical-align: middle; /* উল্লম্বভাবে মাঝখানে আনুন */
+    
 }
 
 /* Activity Feed */

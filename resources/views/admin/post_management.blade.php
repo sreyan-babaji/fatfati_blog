@@ -35,11 +35,11 @@
 
                         </div>
                         <div class="col-md-6">
-                            <select class="form-select">
-                                <option selected>সব স্ট্যাটাস</option>
-                                <option>প্রকাশিত</option>
-                                <option>খসড়া</option>
-                                <option>আর্কাইভড</option>
+                            <select class="form-select" onchange="redirectToStatus(this)">
+                                <option selected value="{{ route('status_search','all_post') }}">সব স্ট্যাটাস</option>
+                                <option value="{{ route('status_search','publish') }}">প্রকাশিত</option>
+                                <option value="{{ route('status_search','draft') }}">খসড়া</option>
+                                <option value="{{ route('status_search','archive') }}">আর্কাইভড</option>
                             </select>
                         </div>
                     </div>
@@ -69,13 +69,21 @@
                             <td>{{$postdata->post_title}}</td>
                             <td>{{$postdata->author}}</td>
                             <td>{{$postdata->post_category}}</td>
-                            <td><span class="badge badge-published">প্রকাশিত</span></td>
+                            @if($postdata->post_status == 'public')
+                            <td class="badge-published ">Publish</td>
+                            @elseif($postdata->post_status == 'draft')
+                            <td class="badge-draft ">Draft</td>
+                            @elseif($postdata->post_status == 'archive')
+                            <td class="bg-success">Archive</td>
+                            @else
+                            <td class="">No Status</td>
+                            @endif
                             <td>২ দিন আগে</td>
                             <td>
-                                <a href="{{ route('blog_post_view') }}" class="btn btn-sm btn-view btn-action">
+                                <a href="{{ route('blog_post_view',$postdata->id) }}" class="btn btn-sm btn-view btn-action" target="_blank">
                                     <i class="bi bi-eye"></i>
                                 </a>
-                                <a href="{{ route('post_edit_view') }}" class="btn btn-sm btn-edit btn-action">
+                                <a href="{{ route('post_edit_view',$postdata->id) }}" class="btn btn-sm btn-edit btn-action" target="_blank">
                                     <i class="bi bi-pencil"></i>
                                 </a>
                                 <button class="btn btn-sm btn-delete btn-action">
@@ -106,6 +114,13 @@
     </div>
     <script>
     function redirectToCategory(select) {
+        const url = select.value;
+        if (url) {
+            window.location.href = url;
+        }
+    }
+
+       function redirectToStatus(select) {
         const url = select.value;
         if (url) {
             window.location.href = url;
