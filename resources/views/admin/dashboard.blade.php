@@ -71,7 +71,7 @@
                             <td>{{$postdata->author}}</td>
                             <td>{{$postdata->post_category}}</td>
                             <td><span class="badge badge-published">প্রকাশিত</span></td>
-                            <td>২ দিন আগে</td>
+                            <td>{{ $postdata->created_at->format('d-m-Y H:i:s') }}</td>
                         </tr>
                         @endforeach
                     </tbody>

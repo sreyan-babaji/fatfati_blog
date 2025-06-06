@@ -34,8 +34,9 @@ route::post('post-create-input',[PostController::class,'post_create_input'])->na
 route::get('post-view/{post_id}',[PostController::class,'blog_post_view'])->name('blog_post_view');
 // Posts edit
 Route::get('post-edit-view/{post_id}', [PostController::class, 'post_edit_view'])->name('post_edit_view');
-Route::put('post-update', [PostController::class, 'update'])->name('post_update');
-// Posts delete------------------------
+Route::post('post-update/{post_id}', [PostController::class, 'post_update'])->name('post_update');
+// Posts delete
+Route::get('post-delete/{post_id}', [PostController::class, 'post_delete'])->name('post_delete');
 //dashboard
 route::get('dashboard',[DashboardController::class,'admin_dashboard'])->name('dashboard');
 //user

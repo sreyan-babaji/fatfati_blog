@@ -78,7 +78,7 @@
                             @else
                             <td class="">No Status</td>
                             @endif
-                            <td>২ দিন আগে</td>
+                            <td>{{ $postdata->created_at->format('d-m-Y H:i:s') }}</td>
                             <td>
                                 <a href="{{ route('blog_post_view',$postdata->id) }}" class="btn btn-sm btn-view btn-action" target="_blank">
                                     <i class="bi bi-eye"></i>
@@ -86,9 +86,9 @@
                                 <a href="{{ route('post_edit_view',$postdata->id) }}" class="btn btn-sm btn-edit btn-action" target="_blank">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <button class="btn btn-sm btn-delete btn-action">
+                                <a href="{{ route('post_delete',$postdata->id) }}" class="btn btn-sm btn-delete btn-action">
                                     <i class="bi bi-trash"></i>
-                                </button>
+                                </a>
                             </td>
                         </tr>
                         @endforeach

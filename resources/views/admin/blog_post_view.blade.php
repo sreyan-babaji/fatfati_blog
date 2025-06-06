@@ -20,8 +20,8 @@
                         {{$postdata->post_content}}
                     </p>
                     <div class="mt-4 d-flex flex-wrap gap-2">
-                        <a href="{{ route('post_edit_view') }}" class="btn btn-primary">Edit Post</a>
-                        <a href="#" class="btn btn-danger">Delete Post</a>
+                        <a href="{{ route('post_edit_view',$postdata->id) }}" class="btn btn-primary">Edit Post</a>
+                        <a href="{{ route('post_delete',$postdata->id) }}" class="btn btn-danger">Delete Post</a>
                     </div>
                 </div>
             </div>
