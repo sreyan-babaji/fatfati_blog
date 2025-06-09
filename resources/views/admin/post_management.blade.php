@@ -86,7 +86,7 @@
                                 <a href="{{ route('post_edit_view',$postdata->id) }}" class="btn btn-sm btn-edit btn-action" target="_blank">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <a href="{{ route('post_delete',$postdata->id) }}" class="btn btn-sm btn-delete btn-action">
+                                <a href="{{ route('post_delete', $postdata->id) }}" onclick="return confirm('Are you sure you want to delete this post?')" class="btn btn-sm btn-delete btn-action">
                                     <i class="bi bi-trash"></i>
                                 </a>
                             </td>
@@ -113,18 +113,21 @@
         </div>
     </div>
     <script>
+    //ক্যাটাগরি দিয়ে সার্চ করার জন্য
     function redirectToCategory(select) {
         const url = select.value;
         if (url) {
             window.location.href = url;
         }
     }
-
+    //স্টেটাস দিয়ে সার্চ করার জন্য
        function redirectToStatus(select) {
         const url = select.value;
         if (url) {
             window.location.href = url;
         }
     }
+
     </script>
+
 @endsection

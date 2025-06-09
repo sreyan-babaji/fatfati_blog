@@ -656,7 +656,7 @@ tr .btn-view {
     color: var(--primary-dark) !important;
 }
 
-.bg-primary {
+.bg-primary,#bg-primary {
     background-color: var(--primary-dark) !important;
 }
 

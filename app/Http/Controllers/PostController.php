@@ -84,7 +84,7 @@ class PostController extends Controller
         $post_input->post_status   = $request->post_status;
 
         if ($post_input->save()) {
-            return redirect()->back()->with('success', 'Post created successfully');
+            return redirect()->route('post_management')->with('success', 'Post update successfully');
         } 
         else {
             return redirect()->back()->with('failed', 'Post creation failed');
@@ -95,7 +95,7 @@ class PostController extends Controller
         $postdata=Post::where('id',$post_id)->first();
         return view('admin.blog_post_view',compact('postdata'),['title' => 'view_post']);
     }
-    //post edit
+    //post edit view
     public function post_edit_view($post_id){
         $postdata=Post::where('id',$post_id)->first();
         $categories=Category::select('id','category_name')->get();
@@ -103,7 +103,7 @@ class PostController extends Controller
 
         return view('admin.post_edit',compact('postdata','categories','category_data'),['title' => 'edit_post']);
     }
-    //Post update
+    //Post edit update
     public function post_update(Request $request, $post_id){
         // Step 1: validate the post
             $validator = Validator::make($request->all(), [

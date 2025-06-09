@@ -20,14 +20,20 @@ Route::get('contact',[Blog_site::class,'site_contact'])->name('site_contact');
 
 /*-------admin pannel all route-----------*/
 //Category
+route::post('category-search',[CategoryController::class,'category_search'])->name('search_category'); // seame hoye gese . u
 route::get('category-manage',[CategoryController::class,'category_manage'])->name('category_manage');
+route::get('category-edit-view/{category_id}',[CategoryController::class,'category_edit_view'])->name('category_edit_view');
+route::post('category-update/{category_id}',[CategoryController::class,'category_update'])->name('category_update');
+route::get('category-delete/{category_id}',[CategoryController::class,'category_delete'])->name('category_delete');
+//category create
 route::get('category-create-view',[CategoryController::class,'category_create_view'])->name('category_create_view');
 route::post('category-create-input',[CategoryController::class,'category_create_input'])->name('category_create_input');
 //Post management
 route::get('status-search/{status}',[PostController::class,'status_search'])->name('status_search');
-route::get('category-search/{category_id}',[PostController::class,'category_search'])->name('category_search');
+route::get('category-search/{category_id}',[PostController::class,'category_search'])->name('category_search'); /// same hoye gese
 route::post('post-search',[PostController::class,'post_search'])->name('post_search');
 route::get('post-management',[PostController::class,'post_management'])->name('post_management');
+//post create
 route::get('post-create-view',[PostController::class,'post_create_view'])->name('post_create_view');
 route::post('post-create-input',[PostController::class,'post_create_input'])->name('post_create_input');
 // Posts view
@@ -41,6 +47,7 @@ Route::get('post-delete/{post_id}', [PostController::class, 'post_delete'])->nam
 route::get('dashboard',[DashboardController::class,'admin_dashboard'])->name('dashboard');
 //user
 route::get('users',[UserController::class,'users'])->name('users');
+route::post('user-search',[PostController::class,'user_search'])->name('user_search');
 //comments
 route::get('comments',[CommentController::class,'comment'])->name('comments');
 //settings

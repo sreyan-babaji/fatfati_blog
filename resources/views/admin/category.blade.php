@@ -9,14 +9,17 @@
         </div>
 
         <!-- সার্চ সেকশন -->
-        <div class="row mb-4">
+        <div class="filter_section row mb-4">
             <div class="col-md-6">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="ক্যাটাগরি খুঁজুন...">
-                    <button class="btn btn-outline-secondary" type="button">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </div>
+                <form action="{{route('search_category')}}" method="POST">
+                    @csrf
+                    <div class="input-group">
+                        <input type="text" name ="search_category" class="form-control" placeholder="ক্যাটাগরি খুঁজুন...">
+                        <button class="btn btn-outline-secondary" type="submit" name="submit" >
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -32,12 +35,12 @@
                     </div>
                     <p class="text-muted mb-4">{{ $category->category_description }}</p>
                     <div class="d-flex justify-content-end">
-                        <button class="btn btn-sm btn-edit btn-action" data-bs-toggle="modal" data-bs-target="#editCategoryModal">
+                        <a href="{{route('category_edit_view',$category->id)}}" class="btn btn-sm btn-edit btn-action" target="_blank" >
                             <i class="bi bi-pencil"></i> এডিট
-                        </button>
-                        <button class="btn btn-sm btn-delete btn-action">
+                        </a>
+                        <a href="{{route('category_delete',$category->id)}}" class="btn btn-sm btn-delete btn-action" onclick="return confirm('Are you sure you want to delete this post?')" >
                             <i class="bi bi-trash"></i> ডিলিট
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>

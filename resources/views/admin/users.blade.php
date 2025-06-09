@@ -12,12 +12,15 @@
         <div class="filter_section">
             <div class="row">
                 <div class="col-md-6 mb-3 mb-md-0">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="ব্যবহারকারী খুঁজুন...">
-                        <button class="btn btn-outline-secondary" type="button">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </div>
+                    <form action="{{ route('user_search') }}" method="POST">
+                        @csrf
+                        <div class="input-group">
+                            <input type="text" name="search_user" class="form-control" placeholder="ব্যবহারকারী খুঁজুন...">
+                            <button class="btn btn-outline-secondary" type="submit" name="submit">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </form>
                 </div>
                 <div class="col-md-6">
                     <div class="row">
@@ -58,20 +61,21 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($user_data as $user)
                         <tr>
-                            <td>1</td>
+                            <td>{{$user->id}}</td>
                             <td>
                                 <div class="d-flex align-items-center">
                                     <img src="https://via.placeholder.com/40" class="user-avatar me-2" alt="User">
                                     <div>
-                                        <div class="fw-bold">আপনি</div>
+                                        <div class="fw-bold">{{$user->name}}</div>
                                         <div class="text-muted small">@admin</div>
                                     </div>
                                 </div>
                             </td>
                             <td><span class="badge badge-admin">এডমিন</span></td>
-                            <td>admin@example.com</td>
-                            <td>২০২৩-০১-১৫</td>
+                            <td>{{$user->email}}</td>
+                            <td>{{$user->created_at}}</td>
                             <td><span class="badge bg-success">এক্টিভ</span></td>
                             <td>
                                 <button class="btn btn-sm btn-edit btn-action">
@@ -82,102 +86,7 @@
                                 </button>
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <img src="https://via.placeholder.com/40" class="user-avatar me-2" alt="User">
-                                    <div>
-                                        <div class="fw-bold">জাহিদ হাসান</div>
-                                        <div class="text-muted small">@jahid</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><span class="badge badge-author">লেখক</span></td>
-                            <td>jahid@example.com</td>
-                            <td>২০২৩-০২-১০</td>
-                            <td><span class="badge bg-success">এক্টিভ</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-edit btn-action">
-                                    <i class="bi bi-pencil"></i>
-                                </button>
-                                <button class="btn btn-sm btn-delete btn-action">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <img src="https://via.placeholder.com/40" class="user-avatar me-2" alt="User">
-                                    <div>
-                                        <div class="fw-bold">সুমাইয়া আক্তার</div>
-                                        <div class="text-muted small">@sumaiya</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><span class="badge badge-author">লেখক</span></td>
-                            <td>sumaiya@example.com</td>
-                            <td>২০২৩-০৩-০৫</td>
-                            <td><span class="badge bg-warning text-dark">নিষ্ক্রিয়</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-edit btn-action">
-                                    <i class="bi bi-pencil"></i>
-                                </button>
-                                <button class="btn btn-sm btn-delete btn-action">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <img src="https://via.placeholder.com/40" class="user-avatar me-2" alt="User">
-                                    <div>
-                                        <div class="fw-bold">রাফি আহমেদ</div>
-                                        <div class="text-muted small">@rafi</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><span class="badge badge-user">ব্যবহারকারী</span></td>
-                            <td>rafi@example.com</td>
-                            <td>২০২৩-০৪-১২</td>
-                            <td><span class="badge bg-success">এক্টিভ</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-edit btn-action">
-                                    <i class="bi bi-pencil"></i>
-                                </button>
-                                <button class="btn btn-sm btn-delete btn-action">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <img src="https://via.placeholder.com/40" class="user-avatar me-2" alt="User">
-                                    <div>
-                                        <div class="fw-bold">তানজিম আহমেদ</div>
-                                        <div class="text-muted small">@tanjim</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><span class="badge badge-user">ব্যবহারকারী</span></td>
-                            <td>tanjim@example.com</td>
-                            <td>২০২৩-০৫-২০</td>
-                            <td><span class="badge bg-danger">ব্লকড</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-edit btn-action">
-                                    <i class="bi bi-pencil"></i>
-                                </button>
-                                <button class="btn btn-sm btn-delete btn-action">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

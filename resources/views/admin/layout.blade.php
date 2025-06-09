@@ -26,7 +26,7 @@
             <li class="{{ Route::is('post_management','post_create_view','blog_post_view','post_edit_view') ? 'active' : '' }}">
                 <a href="{{ route('post_management') }}"><i class="bi bi-file-earmark-text"></i> পোস্ট ম্যানেজমেন্ট</a>
             </li>
-            <li class="{{ Route::is('category_manage','category_create_view') ? 'active' : '' }}">
+            <li class="{{ Route::is('category_manage','category_create_view','search_category','category_edit_view') ? 'active' : '' }}">
                 <a href="{{ route('category_manage') }}"><i class="bi bi-grid"></i> ক্যাটাগরি</a>
             </li>
             <li class="{{ Route::is('users') ? 'active' : '' }}">
@@ -115,6 +115,12 @@
     </script>
     @endif
 
+    <script>
+    //ডিলিট কনফার্ম করার জন্য
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete this ?");
+    }
+    </script>
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
