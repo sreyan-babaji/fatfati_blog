@@ -25,11 +25,11 @@
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-6 mb-2 mb-md-0">
-                            <select class="form-select">
-                                <option selected>সব রোল</option>
-                                <option>এডমিন</option>
-                                <option>লেখক</option>
-                                <option>সাধারণ ব্যবহারকারী</option>
+                            <select class="form-select" onchange="redirectTooption(this)">
+                                <option value="{{ route('users') }}" selected>সব রোল</option>
+                                <option value="{{ route('user_role_search','admin') }}">এডমিন</option>
+                                <option value="{{ route('user_role_search','editor') }}">লেখক</option>
+                                <option value="{{ route('user_role_search','user') }}">সাধারণ ব্যবহারকারী</option>
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -51,7 +51,7 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th width="5%">#</th>
+                            <th width="5%">id</th>
                             <th width="20%">ব্যবহারকারী</th>
                             <th width="15%">রোল</th>
                             <th width="20%">ইমেইল</th>
@@ -66,24 +66,31 @@
                             <td>{{$user->id}}</td>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="https://via.placeholder.com/40" class="user-avatar me-2" alt="User">
+                                    <img src="assets/img/feature-1.jpg" class="user-avatar me-2" alt="User">
                                     <div>
                                         <div class="fw-bold">{{$user->name}}</div>
-                                        <div class="text-muted small">@admin</div>
                                     </div>
                                 </div>
                             </td>
-                            <td><span class="badge badge-admin">এডমিন</span></td>
+                            @if($user->user_role == 'admin')
+                            <td><span class="badge badge-admin ">Admin</span></td>
+                            @elseif($user->user_role == 'user')
+                            <td><span class="badge badge-user ">User</span></td>
+                            @elseif($user->user_role == 'editor')
+                            <td><span class="badge badge-author">Editor</span></td>
+                            @else
+                            <td class="">No role</td>
+                            @endif
                             <td>{{$user->email}}</td>
                             <td>{{$user->created_at}}</td>
                             <td><span class="badge bg-success">এক্টিভ</span></td>
                             <td>
-                                <button class="btn btn-sm btn-edit btn-action">
+                                <a href="{{route('user_edit_view',$user->id)}}" class="btn btn-sm btn-edit btn-action">
                                     <i class="bi bi-pencil"></i>
-                                </button>
-                                <button class="btn btn-sm btn-delete btn-action">
+                                </a>
+                                <a href="{{ route('user_delete', $user->id) }}" class="btn btn-sm btn-delete btn-action" onclick="return confirm('Are you sure you want to delete this post?')">
                                     <i class="bi bi-trash"></i>
-                                </button>
+                                </a>
                             </td>
                         </tr>
                         @endforeach

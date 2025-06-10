@@ -120,6 +120,14 @@
     function confirmDelete() {
         return confirm("Are you sure you want to delete this ?");
     }
+   
+    //অপশন চেঞ্জ করলেই select করার জন্য
+    function redirectTooption(select) {
+        const url = select.value;
+        if (url) {
+            window.location.href = url;
+        }
+    }
     </script>
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

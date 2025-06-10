@@ -496,7 +496,7 @@ tr .btn-view {
 }
 
 .badge-author {
-    background-color: var(--accent-color);
+    background-color: var(--primary-medium);
     color: #333;
 }
 

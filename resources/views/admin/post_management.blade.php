@@ -26,7 +26,7 @@
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-6 mb-2 mb-md-0">
-                          <select class="form-select" onchange="redirectToCategory(this)">
+                          <select class="form-select" onchange="redirectTooption(this)">
                                 <option value="" selected>সব ক্যাটাগরি</option>
                                 @foreach($categories as $category)
                                     <option value="{{ route('category_search', $category->id) }}">{{ $category->category_name }}</option>
@@ -35,7 +35,7 @@
 
                         </div>
                         <div class="col-md-6">
-                            <select class="form-select" onchange="redirectToStatus(this)">
+                            <select class="form-select" onchange="redirectTooption(this)">
                                 <option selected value="{{ route('status_search','all_post') }}">সব স্ট্যাটাস</option>
                                 <option value="{{ route('status_search','publish') }}">প্রকাশিত</option>
                                 <option value="{{ route('status_search','draft') }}">খসড়া</option>
@@ -68,13 +68,13 @@
                             <td>{{$postdata->id}}</td>
                             <td>{{$postdata->post_title}}</td>
                             <td>{{$postdata->author}}</td>
-                            <td>{{$postdata->post_category}}</td>
-                            @if($postdata->post_status == 'public')
-                            <td class="badge-published ">Publish</td>
+                            <td>{{$category->category_name}}</td>
+                            @if($postdata->post_status == 'publish')
+                            <td><span class="badge-published ">Publish</span></td>
                             @elseif($postdata->post_status == 'draft')
-                            <td class="badge-draft ">Draft</td>
+                            <td><span class="badge-draft ">Draft</span></td>
                             @elseif($postdata->post_status == 'archive')
-                            <td class="bg-success">Archive</td>
+                            <td><span class="bg-success">Archive</span></td>
                             @else
                             <td class="">No Status</td>
                             @endif
@@ -112,22 +112,4 @@
             </nav>
         </div>
     </div>
-    <script>
-    //ক্যাটাগরি দিয়ে সার্চ করার জন্য
-    function redirectToCategory(select) {
-        const url = select.value;
-        if (url) {
-            window.location.href = url;
-        }
-    }
-    //স্টেটাস দিয়ে সার্চ করার জন্য
-       function redirectToStatus(select) {
-        const url = select.value;
-        if (url) {
-            window.location.href = url;
-        }
-    }
-
-    </script>
-
 @endsection

@@ -69,7 +69,7 @@
                         <tr>
                             <td>{{$postdata->post_title}}</td>
                             <td>{{$postdata->author}}</td>
-                            <td>{{$postdata->post_category}}</td>
+                            <td>{{$categories->category_name}}</td>
                             <td><span class="badge badge-published">প্রকাশিত</span></td>
                             <td>{{ $postdata->created_at->format('d-m-Y H:i:s') }}</td>
                         </tr>

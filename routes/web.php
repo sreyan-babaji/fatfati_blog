@@ -47,7 +47,12 @@ Route::get('post-delete/{post_id}', [PostController::class, 'post_delete'])->nam
 route::get('dashboard',[DashboardController::class,'admin_dashboard'])->name('dashboard');
 //user
 route::get('users',[UserController::class,'users'])->name('users');
-route::post('user-search',[PostController::class,'user_search'])->name('user_search');
+route::post('user-search',[UserController::class,'user_search'])->name('user_search');
+route::get('role-search/{user_id}',[UserController::class,'user_role_search'])->name('user_role_search');
+Route::get('user-delete/{user_id}', [UserController::class, 'user_delete'])->name('user_delete');
+// user edit
+Route::get('user-edit-view/{user_id}', [UserController::class, 'user_edit_view'])->name('user_edit_view');
+Route::post('user-update/{user_id}', [UserController::class, 'user_update'])->name('user_update');
 //comments
 route::get('comments',[CommentController::class,'comment'])->name('comments');
 //settings
