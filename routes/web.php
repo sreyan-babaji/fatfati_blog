@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Blog_site;
+use App\Http\Controllers\BlogSiteController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\DashboardController;
@@ -11,11 +11,11 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SettingsController;
 
 /*-------website view all route-----------*/
-Route::get('/',[Blog_site::class,'blog_home'])->name('home');
-Route::get('article',[Blog_site::class,'site_article'])->name('site_article');
-Route::get('category',[Blog_site::class,'site_category'])->name('site_category');
-Route::get('about',[Blog_site::class,'site_about'])->name('site_about');
-Route::get('contact',[Blog_site::class,'site_contact'])->name('site_contact');
+Route::get('/',[BlogSiteController::class,'blog_home'])->name('home');
+Route::get('article',[BlogSiteController::class,'site_article'])->name('site_article');
+Route::get('category',[BlogSiteController::class,'site_category'])->name('site_category');
+Route::get('about',[BlogSiteController::class,'site_about'])->name('site_about');
+Route::get('contact',[BlogSiteController::class,'site_contact'])->name('site_contact');
 
 
 /*-------admin pannel all route-----------*/

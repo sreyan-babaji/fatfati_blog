@@ -57,70 +57,34 @@
                 <h2 class="mb-4">সাম্প্রতিক পোস্ট</h2>
                 
                 <!-- ব্লগ কার্ড 1 -->
+                 @foreach($post_data as $post)
 				<div class="card blog-card overflow-hidden">
 					<div class="card-img-container">
 						<img src="assets/img/feature-1.jpg" class="card-img-top" alt="ব্লগ পোস্ট ইমেজ">
 					</div>
 					<div class="card-body">
 						<div class="d-flex justify-content-between mb-2">
-							<span class="badge bg-primary">প্রযুক্তি</span>
+							<span class="badge bg-primary">{{$post->post_category}}</span>
 							<small class="text-muted">২ দিন আগে</small>
 						</div>
-						<h5 class="card-title">বুটস্ট্রাপ 5 ব্যবহার করে ওয়েবসাইট ডিজাইন</h5>
-						<p class="card-text">বুটস্ট্রাপ 5 হল সবচেয়ে জনপ্রিয় ফ্রন্ট-এন্ড ফ্রেমওয়ার্ক যা দিয়ে দ্রুত এবং রেস্পন্সিভ ওয়েবসাইট বানানো যায়...</p>
+						<h5 class="card-title">{{$post->post_title}}</h5>
+						<p class="card-text">
+                            @php
+                                $content = $post->post_content;
+                                $trimmedContent = '';
+                                if (mb_strlen($content) > 7) { // 3 + 4 = 7 অক্ষর এর বেশি হলে
+                                    $trimmedContent = mb_substr($content, 3, mb_strlen($content) - 7);
+                                } else {
+                                    // যদি কন্টেন্ট খুব ছোট হয়, তাহলে এটি খালি দেখান বা আপনার পছন্দমতো কিছু করুন
+                                    $trimmedContent = $content; // অথবা ''
+                                }
+                            @endphp
+                            {{ $trimmedContent }}
+                        </p>
 						<a href="#" class="btn btn-outline-primary">পড়ুন</a>
 					</div>
 				</div>
-				 <!-- ব্লগ কার্ড 2 -->
-				<div class="card blog-card overflow-hidden">
-					<div class="card-img-container">
-						<img src="assets/img/gallery-6.jpg" class="card-img-top" alt="ব্লগ পোস্ট ইমেজ">
-					</div>
-					<div class="card-body">
-						<div class="d-flex justify-content-between mb-2">
-							<span class="badge bg-primary">ভ্রমণ</span>
-							<small class="text-muted">১ সপ্তাহ আগে</small>
-						</div>
-						<h5 class="card-title">সেন্ট মার্টিন দ্বীপে একটি অবিস্মরণীয় সফর</h5>
-						<p class="card-text">সেন্ট মার্টিন বাংলাদেশের একমাত্র প্রবাল দ্বীপ যা তার নৈসর্গিক সৌন্দর্যের জন্য বিখ্যাত...</p>
-						<a href="#" class="btn btn-outline-primary">পড়ুন</a>
-					</div>
-				</div>
-                
-                
-                <!-- ব্লগ কার্ড 3 -->
-				<div class="card blog-card overflow-hidden">
-					<div class="card-img-container">
-						<img src="assets/img/blog-3.jpg" class="card-img-top" alt="ব্লগ পোস্ট ইমেজ">
-					</div>
-					<div class="card-body">
-						<div class="d-flex justify-content-between mb-2">
-							<span class="badge bg-primary">জীবনযাপন</span>
-							<small class="text-muted">২ সপ্তাহ আগে</small>
-						</div>
-						<h5 class="card-title">প্রোডাক্টিভিটি বাড়ানোর ১০টি সহজ উপায়</h5>
-						<p class="card-text">আপনার দৈনন্দিন কাজের উৎপাদনশীলতা বাড়াতে এই সহজ কৌশলগুলো অনুসরণ করুন....</p>
-						<a href="#" class="btn btn-outline-primary">পড়ুন</a>
-					</div>
-				</div>
-                
-				<!-- ব্লগ কার্ড 4 -->
-					<div class="card blog-card overflow-hidden">
-					<div class="card-img-container">
-						<img src="assets/img/blog-2.jpg" class="card-img-top" alt="ব্লগ পোস্ট ইমেজ">
-					</div>
-					<div class="card-body">
-						<div class="d-flex justify-content-between mb-2">
-							<span class="badge bg-primary">টেক</span>
-							<small class="text-muted">৬ সপ্তাহ আগে</small>
-						</div>
-						<h5 class="card-title">এ আই এর অভিনব কিছু কাজ</h5>
-						<p class="card-text">এ আই আজকের দিনে মানুষের কাজ সহজ করে দিয়েছে এমনকি তার চেয়েও কিছুক্ষেত্রে ভাল করছে....</p>
-						<a href="#" class="btn btn-outline-primary">পড়ুন</a>
-					</div>
-				</div>
-				
-                
+				 @endforeach
                 <!-- পেজিনেশন -->
                 <nav aria-label="Page navigation">
                     <ul class="pagination justify-content-center mt-4">

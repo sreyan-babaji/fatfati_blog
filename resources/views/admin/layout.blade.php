@@ -131,7 +131,7 @@
     </script>
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- কাস্টম JS -->
     <script src="{{ asset('assets/js/blog_admin.js') }}"></script>

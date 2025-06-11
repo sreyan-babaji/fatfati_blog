@@ -525,7 +525,7 @@ tr .btn-view {
 
 .comment-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    box-shadow: 6px 6px 10px 11px rgba(113, 192, 187, 0.3);
 }
 
 .comment-author {
