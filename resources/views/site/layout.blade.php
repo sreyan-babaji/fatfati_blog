@@ -10,7 +10,7 @@
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body data-bs-spy="scroll" data-bs-target=".navbar">
+<body data-bs-spy="scroll" data-bs-target=".navbar" class='body'>
     
     <!-- নেভিগেশন বার -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-top mb-4" id="mainNavbar">

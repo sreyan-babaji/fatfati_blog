@@ -56,7 +56,7 @@
             <div class="col-lg-8">
                 <h2 class="mb-4">সাম্প্রতিক পোস্ট</h2>
                 
-                <!-- ব্লগ কার্ড 1 -->
+                <!-- ব্লগ কার্ড  -->
                  @foreach($post_data as $post)
 				<div class="card blog-card overflow-hidden">
 					<div class="card-img-container">
@@ -101,8 +101,8 @@
                 </nav>
             </div>
 
-			<div class="col-lg-1">
-            </div>
+			<div  class="col-lg-1">  </div>
+
             <!-- সাইডবার -->
             <div class="col-lg-3 homeside p-1">
                 <!-- সার্চ বক্স -->

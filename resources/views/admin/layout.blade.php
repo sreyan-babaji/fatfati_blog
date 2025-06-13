@@ -74,7 +74,7 @@
                         <span>এডমিন</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i> প্রোফাইল</a></li>
+                        <li><a class="dropdown-item" href="{{route('profile')}}"><i class="bi bi-person me-2"></i> প্রোফাইল</a></li>
                         <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i> সেটিংস</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right me-2"></i> লগ আউট</a></li>
