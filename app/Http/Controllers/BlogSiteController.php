@@ -13,6 +13,7 @@ class BlogSiteController extends Controller
         $post_data=Post::select('id','post_category','post_title','post_img','post_status','post_content','author','slug','created_at','updated_at')->get();
         $title="home page";
         return view('site.blog_home',compact('post_data','title'));
+        
     }
     public function site_article(){
         $post_data=Post::select('id','post_category','post_title','post_img','post_status','post_content','author','slug','created_at','updated_at')->get();

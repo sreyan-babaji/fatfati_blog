@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\BlogSiteController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\DashboardController;
@@ -19,6 +20,11 @@ Route::get('contact',[BlogSiteController::class,'site_contact'])->name('site_con
 
 
 /*-------admin pannel all route-----------*/
+//dashboard
+route::get('dashboard',[DashboardController::class,'admin_dashboard'])->name('dashboard');
+//profile view
+route::get('profile',[ProfileController::class,'profile'])->name('profile');
+route::get('profile-update',[ProfileController::class,'profile_update'])->name('profile_update');
 //Category
 route::post('category-search',[CategoryController::class,'category_search'])->name('search_category'); // seame hoye gese . u
 route::get('category-manage',[CategoryController::class,'category_manage'])->name('category_manage');
@@ -43,8 +49,6 @@ Route::get('post-edit-view/{post_id}', [PostController::class, 'post_edit_view']
 Route::post('post-update/{post_id}', [PostController::class, 'post_update'])->name('post_update');
 // Posts delete
 Route::get('post-delete/{post_id}', [PostController::class, 'post_delete'])->name('post_delete');
-//dashboard
-route::get('dashboard',[DashboardController::class,'admin_dashboard'])->name('dashboard');
 //user
 route::get('users',[UserController::class,'users'])->name('users');
 route::post('user-search',[UserController::class,'user_search'])->name('user_search');
