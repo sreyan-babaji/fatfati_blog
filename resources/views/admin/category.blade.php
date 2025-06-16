@@ -31,7 +31,7 @@
                 <div class="category-card">
                     <div class="d-flex justify-content-between align-items-start mb-3">
                         <h4>{{$category->category_name}}</h4>
-                        <span class="category-count">iu</span>
+                        <span class="category-count">মোট পোষ্ট : {{ $category->post_count }}</span>
                     </div>
                     <p class="text-muted mb-4">{{ $category->category_description }}</p>
                     <div class="d-flex justify-content-end">

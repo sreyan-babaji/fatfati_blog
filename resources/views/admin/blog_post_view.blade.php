@@ -37,7 +37,7 @@
                             <div class="d-flex align-items-center">
                                 <i class="bi bi-bookmark me-2"></i>
                                 <span class="badge bg-primary bg-opacity-10 text-primary">
-                                    {{ $postdata->post_category }}
+                                    {{ $category_data->category_name }}
                                 </span>
                             </div>
                         </div>

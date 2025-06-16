@@ -93,7 +93,8 @@ class PostController extends Controller
     //post view
     public function blog_post_view($post_id){
         $postdata=Post::where('id',$post_id)->first();
-        return view('admin.blog_post_view',compact('postdata'),['title' => 'view_post']);
+        $category_data = Category::select('id','category_name')->where('id',$postdata->post_category)->first();
+        return view('admin.blog_post_view',compact('postdata','category_data'),['title' => 'view_post']);
     }
     //post edit view
     public function post_edit_view($post_id){

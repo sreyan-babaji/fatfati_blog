@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -18,8 +19,12 @@ class CategoryController extends Controller
     //category manage view
     public function category_manage(){
         $all_category=Category::select('id','category_name','category_description','category_slug','category_img','updated_at','created_at')->get();
-        $category_count=Category::count();
-        return view('admin.category',compact('all_category','category_count'),['title' => 'category_manage']);
+        
+        foreach ($all_category as $category) {
+            $category->post_count = Post::where('post_category', $category->id)->count();
+        }
+        
+        return view('admin.category',compact('all_category'),['title' => 'category_manage']);
     }
 
      //category create view

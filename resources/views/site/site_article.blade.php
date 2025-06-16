@@ -14,7 +14,8 @@
             <!-- ব্লগ পোস্ট লিস্ট -->
             <div class="col-lg-8">
                 <!-- ব্লগ পোস্ট ১ -->
-                <article class="blog-post border p-1">
+                 @foreach($post_data as $post)
+                <article class="blog-post border p-1 overflow-hidden">
                     <div class="row">
                         <div class="col-md-5">
                             <img src="assets/img/feature-1.jpg" alt="ব্লগ পোস্ট ইমেজ" class="img-fluid">
@@ -24,66 +25,25 @@
                                 <span class="badge bg-primary">প্রযুক্তি</span>
                                 <small class="text-muted">২ দিন আগে</small>
                             </div>
-                            <h3 class="text-muted">বুটস্ট্রাপ 5 ব্যবহার করে ওয়েবসাইট ডিজাইন</h3>
-                            <p class="text-muted">বুটস্ট্রাপ 5 হল সবচেয়ে জনপ্রিয় ফ্রন্ট-এন্ড ফ্রেমওয়ার্ক যা দিয়ে দ্রুত এবং রেস্পন্সিভ ওয়েবসাইট বানানো যায়। এই আর্টিকেলে আমরা শিখব কিভাবে বুটস্ট্রাপ 5 ব্যবহার করে...</p>
+                            <h3 class="text-muted">{{$post->post_title}}</h3>
+                            <p class="text-muted">
+                                @php
+                                $content = $post->post_content;
+                                $trimmedContent = '';
+                                if (mb_strlen($content) > 7) { // 3 + 4 = 7 অক্ষর এর বেশি হলে
+                                    $trimmedContent = mb_substr($content, 3, mb_strlen($content) - 7);
+                                } else {
+                                    // যদি কন্টেন্ট খুব ছোট হয়, তাহলে এটি খালি দেখান বা আপনার পছন্দমতো কিছু করুন
+                                    $trimmedContent = $content; // অথবা ''
+                                }
+                                @endphp
+                                {{ $trimmedContent }}
+                            </p>
                             <a href="single-post.html" class="btn btn-outline-primary">পড়ুন</a>
                         </div>
                     </div>
                 </article>
-                
-                <!-- ব্লগ পোস্ট ২ -->
-                <article class="blog-post border p-1">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <img src="assets/img/gallery-6.jpg" alt="ব্লগ পোস্ট ইমেজ" class="img-fluid">
-                        </div>
-                        <div class="col-md-7">
-                            <div class="d-flex justify-content-between mb-2">
-                                <span class="badge bg-success">ভ্রমণ</span>
-                                <small class="text-muted">১ সপ্তাহ আগে</small>
-                            </div>
-                            <h3 class="text-muted">সেন্ট মার্টিন দ্বীপে একটি অবিস্মরণীয় সফর</h3>
-                            <p class="text-muted">সেন্ট মার্টিন বাংলাদেশের একমাত্র প্রবাল দ্বীপ যা তার নৈসর্গিক সৌন্দর্যের জন্য বিখ্যাত। এই ব্লগ পোস্টে আমি শেয়ার করব আমার সেন্ট মার্টিন ভ্রমণের অভিজ্ঞতা...</p>
-                            <a href="single-post.html" class="btn btn-outline-primary">পড়ুন</a>
-                        </div>
-                    </div>
-                </article>
-                
-                <!-- ব্লগ পোস্ট ৩ -->
-                <article class="blog-post border p-1">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <img src="assets/img/blog-3.jpg" alt="ব্লগ পোস্ট ইমেজ" class="img-fluid">
-                        </div>
-                        <div class="col-md-7">
-                            <div class="d-flex justify-content-between mb-2">
-                                <span class="badge bg-warning text-dark">জীবনযাপন</span>
-                                <small class="text-muted">২ সপ্তাহ আগে</small>
-                            </div>
-                            <h3 class="text-muted">প্রোডাক্টিভিটি বাড়ানোর ১০টি সহজ উপায়</h3>
-                            <p class="text-muted">আপনার দৈনন্দিন কাজের উৎপাদনশীলতা বাড়াতে এই সহজ কৌশলগুলো অনুসরণ করুন। এই টিপসগুলো বিজ্ঞানসম্মত এবং অনেক সফল মানুষ দ্বারা পরীক্ষিত...</p>
-                            <a href="single-post.html" class="btn btn-outline-primary">পড়ুন</a>
-                        </div>
-                    </div>
-                </article>
-                
-                <!-- ব্লগ পোস্ট ৪ -->
-                <article class="blog-post border p-1">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <img src="assets/img/blog-2.jpg" alt="ব্লগ পোস্ট ইমেজ" class="img-fluid">
-                        </div>
-                        <div class="col-md-7">
-                            <div class="d-flex justify-content-between mb-2">
-                                <span class="badge bg-info">স্বাস্থ্য</span>
-                                <small class="text-muted">৩ সপ্তাহ আগে</small>
-                            </div>
-                            <h3 class="text-muted">ঘরে বসে ব্যায়াম: সম্পূর্ণ গাইড</h3>
-                            <p class="text-muted">জিমে যাওয়ার সময় না পেলে ঘরেই করতে পারেন কার্যকরী ব্যায়াম। এই গাইডে আমরা শিখব কিভাবে কোন যন্ত্রপাতি ছাড়াই ঘরে ফিটনেস রুটিন মেইনটেইন করা যায়...</p>
-                            <a href="single-post.html" class="btn btn-outline-primary">পড়ুন</a>
-                        </div>
-                    </div>
-                </article>
+                @endforeach
                 
                 <!-- পেজিনেশন -->
                 <nav aria-label="Page navigation">

@@ -64,7 +64,7 @@
 					</div>
 					<div class="card-body">
 						<div class="d-flex justify-content-between mb-2">
-							<span class="badge bg-primary">{{$post->post_category}}</span>
+							<span class="badge bg-primary">প্রযুক্তি</span>
 							<small class="text-muted">২ দিন আগে</small>
 						</div>
 						<h5 class="card-title">{{$post->post_title}}</h5>
