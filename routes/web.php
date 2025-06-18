@@ -12,6 +12,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SettingsController;
 
 /*-------website view all route-----------*/
+Route::post('search',[BlogSiteController::class,'search'])->name('search');
 Route::get('/',[BlogSiteController::class,'blog_home'])->name('home');
 Route::get('article',[BlogSiteController::class,'site_article'])->name('site_article');
 Route::get('category',[BlogSiteController::class,'site_category'])->name('site_category');

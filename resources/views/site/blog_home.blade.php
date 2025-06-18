@@ -65,7 +65,7 @@
 					<div class="card-body">
 						<div class="d-flex justify-content-between mb-2">
 							<span class="badge bg-primary">প্রযুক্তি</span>
-							<small class="text-muted">২ দিন আগে</small>
+							<small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
 						</div>
 						<h5 class="card-title">{{$post->post_title}}</h5>
 						<p class="card-text">
@@ -109,10 +109,13 @@
                 <div class="card mb-4">
                     <div class="card-body">
                         <h5 class="card-title">খুঁজুন</h5>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="খুঁজুন...">
-                            <button class="btn btn-primary" type="button"><i class="bi bi-search"></i></button>
-                        </div>
+                        <form action="{{ route('search') }}" method="POST">
+                            @csrf
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="search" placeholder="খুঁজুন..." required>
+                                <button class="btn btn-primary" name="submit" type="submit"><i class="bi bi-search"></i></button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 
@@ -121,22 +124,12 @@
                     <div class="card-body">
                         <h5 class="card-title">ক্যাটাগরি</h5>
                         <ul class="list-group list-group-flush">
+                            @foreach($category_data as $category)
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                প্রযুক্তি
-                                <span class="badge bg-primary rounded-pill">14</span>
+                                {{$category->category_name}}
+                                <span class="badge bg-primary rounded-pill">{{ $category->post_count }}</span>
                             </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                ভ্রমণ
-                                <span class="badge bg-primary rounded-pill">8</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                জীবনযাপন
-                                <span class="badge bg-primary rounded-pill">5</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                স্বাস্থ্য
-                                <span class="badge bg-primary rounded-pill">3</span>
-                            </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

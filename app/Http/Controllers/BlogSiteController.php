@@ -9,24 +9,38 @@ use Illuminate\Support\Str;
 
 class BlogSiteController extends Controller
 {
+     // search
+     public function search(Request $request){
+        $post_data = Post::where('post_title', 'like', $request->search )->get();
+        $title = 'Search result';
+        return view('site.site_article',compact('post_data','title'));
+    }
+    //home page
     public function blog_home(){
+        $category_data=Category::select('id','category_name')->get();
+         foreach ($category_data as $category) {
+            $category->post_count = Post::where('post_category', $category->id)->count();
+        }
         $post_data=Post::select('id','post_category','post_title','post_img','post_status','post_content','author','slug','created_at','updated_at')->get();
         $title="home page";
-        return view('site.blog_home',compact('post_data','title'));
-        
+        return view('site.blog_home',compact('post_data','title','category_data')); 
     }
+    //article
     public function site_article(){
         $post_data=Post::select('id','post_category','post_title','post_img','post_status','post_content','author','slug','created_at','updated_at')->get();
         return view('site.site_article',compact('post_data'),['title' => 'article']); 
     }
+    //category
     public function site_category(){
         $category_data=Category::select('id','category_name','category_description','category_slug','category_img','updated_at','created_at')->get();
         $postCount = Post::where('post_category','3')->count();
        return view('site.site_category',compact('category_data','postCount'),['title' => 'category']); 
     }
+    //about
     public function site_about(){
        return view('site.site_about',['title' => 'about']); 
     }
+    //contact
      public function site_contact(){
        return view('site.site_contact',['title' => 'contact']); 
     }
