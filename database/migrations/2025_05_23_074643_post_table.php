@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('post_category');
             $table->string('post_title');
-            $table->string('post_img');
+            $table->string('post_img')->nullable();
             $table->text('post_content');
-            $table->string('author');
+            $table->string('author')->nullable();
+            $table->enum('post_status', ['published', 'draft', 'pending'])->default('draft');
             $table->string('slug');
             $table->timestamps();
         });

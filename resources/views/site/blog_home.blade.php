@@ -86,19 +86,7 @@
 				</div>
 				 @endforeach
                 <!-- পেজিনেশন -->
-                <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center mt-4">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">পূর্ববর্তী</a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">১</a></li>
-                        <li class="page-item"><a class="page-link" href="#">২</a></li>
-                        <li class="page-item"><a class="page-link" href="#">৩</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">পরবর্তী</a>
-                        </li>
-                    </ul>
-                </nav>
+               {{ $post_data->onEachSide(5)->links() }}
             </div>
 
 			<div  class="col-lg-1">  </div>

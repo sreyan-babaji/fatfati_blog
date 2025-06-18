@@ -69,8 +69,16 @@
                         <tr>
                             <td>{{$postdata->post_title}}</td>
                             <td>{{$postdata->author}}</td>
-                            <td>{{$categories->category_name}}</td>
-                            <td><span class="badge badge-published">প্রকাশিত</span></td>
+                            <td>{{$postdata->postcategoryname}}</td>
+                            @if($postdata->post_status == 'published')
+                            <td><span class="badge-published ">Published</span></td>
+                            @elseif($postdata->post_status == 'draft')
+                            <td><span class="badge-draft ">Draft</span></td>
+                            @elseif($postdata->post_status == 'pending')
+                            <td><span class="bg-success rounded-pill text-white p-1">Pending</span></td>
+                            @else
+                            <td class="">No Status</td>
+                            @endif
                             <td>{{ $postdata->created_at->format('d-m-Y H:i:s') }}</td>
                         </tr>
                         @endforeach
