@@ -24,12 +24,12 @@
         @csrf
         <div class="mb-3">
             <label for="name">Full Name</label>
-            <input type="text" name="user_name" class="form-control" required value="{{ old('name') }}">
+            <input type="text" name="user_name" class="form-control" required value="{{ old('name', $user_data->name) }}">
         </div>
 
         <div class="mb-3">
             <label for="email">Email Address</label>
-            <input type="email" name="user_email" class="form-control" required value="{{ old('email') }}">
+            <input type="email" name="user_email" class="form-control" required value="{{ old('email', $user_data->email) }}">
         </div>
 
         <div class="mb-3">
@@ -46,10 +46,10 @@
         <div class="col-md-6">
         <label for="user_role" class="form-label fw-bold">ক্যাটাগরি</label>
         <select class="form-select rounded-3" id="user_role" name="user_role" required>
-            <option value="{{ $user_data->user_role }}" selected>{{ $user_data->user_role }}</option>
-            @foreach($user_data as $user)
-            @if($user_data->user_role != $user->user_role)
-            <option value="{{ $user->user_role }}">{{ $user->user_role }}</option>
+            <option value="{{ $user_role_data->id }}" selected>{{ $user_role_data->role_name }}</option>
+            @foreach($all_roles as $role)
+            @if($user_role_data->role_name != $role->role_name)
+                <option value="{{ $role->id }}" selected>{{ $role->role_name }}</option>
             @endif
             @endforeach
         </select>

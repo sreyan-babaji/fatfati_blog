@@ -69,18 +69,32 @@
 						</div>
 						<h5 class="card-title">{{$post->post_title}}</h5>
 						<p class="card-text">
-                            {{ $post->short_content }}
+                        
                             @php
-                                $content = $post->post_content;
+                                $content = $post->short_content;
                                 $trimmedContent = '';
-                                if (mb_strlen($content) > 7) { // 3 + 4 = 7 অক্ষর এর বেশি হলে
-                                    $trimmedContent = mb_substr($content, 3, mb_strlen($content) - 7);
+
+                                echo mb_strlen($content);
+                                echo '<br>';
+                               $katlam= mb_strlen($content) - 7;
+                                echo $katlam;
+                                if (mb_strlen($content) > 7) { 
+                                    $trimmedContent = mb_substr($content, 3, mb_strlen($content) -7);
                                 } else {
                                     // যদি কন্টেন্ট খুব ছোট হয়, তাহলে এটি খালি দেখান বা আপনার পছন্দমতো কিছু করুন
                                     $trimmedContent = $content; // অথবা ''
                                 }
+                                $katlam1= mb_strlen($trimmedContent);
+                                echo $katlam1;
                             @endphp
                             {{ $trimmedContent }}
+
+
+                            
+                            <br>
+                            <br>
+        
+                    
                             
                         </p>
 						<a href="#" class="btn btn-outline-primary">পড়ুন</a>

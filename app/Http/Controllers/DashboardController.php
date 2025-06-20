@@ -18,7 +18,7 @@ class DashboardController extends Controller
             $postcategorydata = Category::where('id',$post->post_category)->first();
             $post->postcategoryname = $postcategorydata->category_name;
         }
-        $post_count= $all_post->count();
+        $post_count= Post::count();
         $user_count=User::count();
         $comment_count=Comment::count();
         $category_count=Category::count();

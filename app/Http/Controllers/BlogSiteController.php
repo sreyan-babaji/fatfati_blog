@@ -22,10 +22,9 @@ class BlogSiteController extends Controller
             $category->post_count = Post::where('post_category', $category->id)->count();
         }
         $post_data=Post::Paginate(4);
-        $post_data->getCollection()->transform(function ($post) {
-            $post->short_content = Str::limit($post->content, 40, '...');
-            return $post;
-        });
+        foreach($post_data as $post){
+            $post->short_content = Str::limit($post->post_content, 30, '...');
+        }
         $title="home page";
         return view('site.blog_home',compact('post_data','title','category_data')); 
     }

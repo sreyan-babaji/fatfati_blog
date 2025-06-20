@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
-
 use App\Models\User;
+use App\Models\UserRole;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -35,8 +34,10 @@ class UserController extends Controller
     }
     //user edit view
     public function user_edit_view($user_id){
-        $user_data=User::where('id','user_role',$user_id)->first();
-        return view('admin.user_edit',compact('user_data'),['title' => 'user_post']);
+        $user_data=User::where('id', $user_id)->first();
+        $user_role_data = UserRole::where('id', $user_data->user_role )->first();
+        $all_roles=UserRole::get();
+        return view('admin.user_edit',compact('user_data','user_role_data','all_roles'),['title' => 'user_post']);
 
     }
     //user edit update
@@ -73,7 +74,7 @@ class UserController extends Controller
             $user_input->password  = $request->password;
             $user_input->user_role  = $request->password;
             if ($user_input->update()) {
-                return redirect()->route('blog_post_view',$post_id)->with('success', 'Post update successfully');
+                return redirect()->route('users',$user_id)->with('success', 'Post update successfully');
             } 
         }
     }

@@ -13,7 +13,8 @@ class DatabaseSeeder extends Seeder
         Post::factory()->count(100)->create();
         User::factory()->count(20)->create();
         $this->call([
-            CategorySeeder::class
+            CategorySeeder::class,
+            UserRoleTableSeeder::class
         ]);
     }
 }
