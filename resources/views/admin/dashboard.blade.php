@@ -84,6 +84,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $all_post->onEachSide(5)->links() }}
             </div>
             <a href="{{ route('post_management') }}" class="btn btn-sm mt-3" style="background-color: var(--primary-dark); color: white;">সমস্ত পোস্ট দেখুন</a>
         </div>

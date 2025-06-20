@@ -13,7 +13,7 @@ class DashboardController extends Controller
 {
    public function admin_dashboard(){
         
-        $all_post=Post::all();
+        $all_post=Post::paginate(10);
          foreach ($all_post as $post) {
             $postcategorydata = Category::where('id',$post->post_category)->first();
             $post->postcategoryname = $postcategorydata->category_name;

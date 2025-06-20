@@ -97,19 +97,7 @@
             </div>
             
             <!-- পেজিনেশন -->
-            <nav aria-label="Page navigation" class="p-3">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">পূর্ববর্তী</a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">পরবর্তী</a>
-                    </li>
-                </ul>
-            </nav>
+              {{ $post_data->onEachSide(1)->links() }}
         </div>
     </div>
 @endsection

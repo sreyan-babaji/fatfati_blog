@@ -22,7 +22,7 @@ class UserController extends Controller
   }
   //user management
   public function users(){
-    $user_data = User::select('id','name','email','password','created_at','user_role')->get();
+    $user_data = User::paginate(8);
     $title='users';
         return view('admin.users',compact('user_data','title'));
     }

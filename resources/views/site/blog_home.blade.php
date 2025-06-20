@@ -69,6 +69,7 @@
 						</div>
 						<h5 class="card-title">{{$post->post_title}}</h5>
 						<p class="card-text">
+                            {{ $post->short_content }}
                             @php
                                 $content = $post->post_content;
                                 $trimmedContent = '';
@@ -80,13 +81,14 @@
                                 }
                             @endphp
                             {{ $trimmedContent }}
+                            
                         </p>
 						<a href="#" class="btn btn-outline-primary">পড়ুন</a>
 					</div>
 				</div>
 				 @endforeach
                 <!-- পেজিনেশন -->
-               {{ $post_data->onEachSide(5)->links() }}
+               {{ $post_data->onEachSide(2)->links() }}
             </div>
 
 			<div  class="col-lg-1">  </div>

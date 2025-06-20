@@ -19,7 +19,7 @@
                     <div class="card-body text-center">
                         <h3 class="card-title">{{$category->category_name}}</h3>
                         <p class="card-text">{{$category->category_description}}</p>
-                        <a href="category-posts.html" class="btn btn-primary">পোস্ট দেখুন <span class="badge bg-light text-dark">{{$postCount}}</span></a>
+                        <a href="category-posts.html" class="btn btn-primary">পোস্ট দেখুন <span class="badge bg-light text-dark">{{ $category->post_count }}</span></a>
                     </div>
                 </div>
             </div>

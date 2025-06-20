@@ -58,17 +58,7 @@
                 
                 <!-- পেজিনেশন -->
                 <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center mt-5">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">পূর্ববর্তী</a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">১</a></li>
-                        <li class="page-item"><a class="page-link" href="#">২</a></li>
-                        <li class="page-item"><a class="page-link" href="#">৩</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">পরবর্তী</a>
-                        </li>
-                    </ul>
+                    {{ $post_data->onEachSide(2)->links() }}
                 </nav>
             
         </div>
