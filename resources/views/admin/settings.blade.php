@@ -29,33 +29,56 @@
             <div class="tab-pane fade show active" id="general" role="tabpanel">
                 <div class="settings-card">
                     <h4><i class="bi bi-globe me-2"></i> সাধারণ সেটিংস</h4>
-                    <form>
+                    <form action="{{ route('update_site_title') }}" method="POST">
+                        @csrf
                         <div class="mb-3">
                             <label for="siteTitle" class="form-label">সাইট টাইটেল</label>
-                            <input type="text" class="form-control" id="siteTitle" value="আমার ব্লগ">
+                            <input type="text" class="form-control" id="siteTitle" name="site_title" value="{{ $settings_data->site_title ?? 'আমার ব্লগ '}}">
                         </div>
+                        <button type="submit" class="btn btn-submit">সংরক্ষণ করুন</button>
+                    </form>
+                    <hr>
+                      <form action="{{ route('update_site_slug') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="siteslug" class="form-label">সাইট স্লাগ</label>
+                            <input type="text" class="form-control" id="siteslug" name="site_slug" value="আমার ব্লগ">
+                        </div>
+                        <button type="submit" class="btn btn-submit">সংরক্ষণ করুন</button>
+                    </form>
+                    <hr>
+                    <form action="{{ route('update_site_description') }}" method="POST">
+                        @csrf
                         <div class="mb-3">
                             <label for="siteDescription" class="form-label">সাইট বর্ণনা</label>
-                            <textarea class="form-control" id="siteDescription" rows="3">প্রযুক্তি, ভ্রমণ এবং জীবনযাপন নিয়ে আমার চিন্তাভাবনা</textarea>
+                            <textarea class="form-control" id="siteDescription" name="site_description" rows="3">প্রযুক্তি, ভ্রমণ এবং জীবনযাপন নিয়ে আমার চিন্তাভাবনা</textarea>
                         </div>
-                        <div class="mb-3">
-                            <label for="siteLogo" class="form-label">সাইট লোগো</label>
-                            <input class="form-control" type="file" id="siteLogo">
-                            <div class="form-text">প্রস্তাবিত সাইজ: 200px × 50px</div>
+                        <button type="submit" class="btn btn-submit">সংরক্ষণ করুন</button>
+                    </form>
+                    <hr>
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="" alt="">
+                         </div>
+                        <div class="col-8">
+                        <form action="{{ route('update_site_logo') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="siteLogo" class="form-label">সাইট লোগো</label>
+                                <input class="form-control" type="file" id="siteLogo" name="site_logo">
+                                <div class="form-text">প্রস্তাবিত সাইজ: 200px × 50px</div>
+                            </div>
+                            <button type="submit" class="btn btn-submit">সংরক্ষণ করুন</button>
+                        </form>
                         </div>
+                    </div>
+                    <hr>
+                    <form action="{{ route('update_site_favicon') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="mb-3">
                             <label for="siteFavicon" class="form-label">ফেভিকন</label>
-                            <input class="form-control" type="file" id="siteFavicon">
+                            <input class="form-control" type="file" id="siteFavicon" name="site_favicon">
                             <div class="form-text">প্রস্তাবিত সাইজ: 32px × 32px</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="timezone" class="form-label">টাইমজোন</label>
-                            <select class="form-select" id="timezone">
-                                <option selected>(UTC+06:00) ঢাকা</option>
-                                <option>(UTC+05:30) কলকাতা</option>
-                                <option>(UTC+00:00) লন্ডন</option>
-                                <option>(UTC-05:00) নিউ ইয়র্ক</option>
-                            </select>
                         </div>
                         <button type="submit" class="btn btn-submit">সংরক্ষণ করুন</button>
                     </form>

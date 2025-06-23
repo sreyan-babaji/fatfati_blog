@@ -88,11 +88,19 @@
                                 <a href="{{route('user_edit_view',$user->id)}}" class="btn btn-sm btn-edit btn-action">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <a href="{{ route('user_delete', $user->id) }}" class="btn btn-sm btn-delete btn-action" onclick="return confirm('Are you sure you want to delete this post?')">
-                                    <i class="bi bi-trash"></i>
+                                <!-- Trigger Delete Button -->
+                                <a href="#" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#deleteModal{{ $user->id }}" 
+                                class="btn btn-sm btn-delete btn-action">
+                                <i class="bi bi-trash"></i>
                                 </a>
+
                             </td>
                         </tr>
+
+                       <x-delete-modal :content_type="'user'" :content_id="$user->id" />
+
                         @endforeach
                     </tbody>
                 </table>

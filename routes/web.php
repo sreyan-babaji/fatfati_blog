@@ -62,5 +62,11 @@ Route::post('user-update/{user_id}', [UserController::class, 'user_update'])->na
 route::get('comments',[CommentController::class,'comment'])->name('comments');
 //settings
 route::get('settings',[SettingsController::class,'settings'])->name('settings');
+//general settings
+Route::post('site-title-update', [SettingsController::class, 'updateTitle'])->name('update_site_title');
+Route::post('site-slug-update', [SettingsController::class, 'updateslug'])->name('update_site_slug');
+Route::post('site-description-update', [SettingsController::class, 'updateDescription'])->name('update_site_description');
+Route::post('site-logo-update', [SettingsController::class, 'updateLogo'])->name('update_site_logo');
+Route::post('site-favicon-update', [SettingsController::class, 'updateFavicon'])->name('update_site_favicon');
 
 

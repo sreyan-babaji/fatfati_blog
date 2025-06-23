@@ -116,11 +116,7 @@
     @endif
 
     <script>
-    //ডিলিট কনফার্ম করার জন্য
-    function confirmDelete() {
-        return confirm("Are you sure you want to delete this ?");
-    }
-   
+ 
     //অপশন চেঞ্জ করলেই select করার জন্য
     function redirectTooption(select) {
         const url = select.value;

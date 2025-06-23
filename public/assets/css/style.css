@@ -383,6 +383,23 @@ footer a:hover {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
+/* Pagination */
+.pagination .page-item.active .page-link {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+.pagination .page-link {
+    color: var(--primary-dark);
+    border: 1px solid #dee2e6;
+    margin: 0 5px;
+    border-radius: 6px;
+}
+
+.pagination .page-link:hover {
+    background-color: var(--light-gray);
+}
+
 /* Utility Classes */
 .btn-primary {
     background-color: var(--primary-medium);

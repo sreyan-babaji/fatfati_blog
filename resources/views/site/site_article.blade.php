@@ -58,9 +58,7 @@
                 @endforeach
                 
                 <!-- পেজিনেশন -->
-                <nav aria-label="Page navigation">
                     {{ $post_data->onEachSide(2)->links() }}
-                </nav>
             
         </div>
     </div>
