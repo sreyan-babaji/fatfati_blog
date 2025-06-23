@@ -12,21 +12,21 @@ class PostController extends Controller
     //post search
      public function post_search(Request $request){
         $categories=Category::select('id','category_name')->get();
-        $post_data = Post::where('post_title', 'like', '%' . $request->search_text . '%')->get();
+        $post_data = Post::where('post_title', 'like', '%' . $request->search_text . '%')->paginate(10);
         $title = 'Post Search result';
         return view('admin.post_management',compact('post_data','title','categories'));
     }
     //category search
      public function category_search($category_id){
         $categories=Category::select('id','category_name')->get();
-        $post_data = Post::where('post_category', $category_id)->get();
+        $post_data = Post::where('post_category', $category_id)->paginate(10);
         $title = 'category Search result';
         return view('admin.post_management',compact('post_data','title','categories'));
     }
     //status search
      public function status_search($status){
         $categories=Category::select('id','category_name')->get();
-        $post_data = Post::where('post_status', $status)->get();
+        $post_data = Post::where('post_status', $status)->paginate(10);
         $title = 'post_status Search result';
         return view('admin.post_management',compact('post_data','title','categories'));
     }

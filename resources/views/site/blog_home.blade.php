@@ -64,7 +64,7 @@
 					</div>
 					<div class="card-body">
 						<div class="d-flex justify-content-between mb-2">
-							<span class="badge bg-primary">প্রযুক্তি</span>
+							<span class="badge text-white">প্রযুক্তি</span>
 							<small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
 						</div>
 						<h5 class="card-title">{{$post->post_title}}</h5>
@@ -73,36 +73,22 @@
                             @php
                                 $content = $post->short_content;
                                 $trimmedContent = '';
-
-                                echo mb_strlen($content);
-                                echo '<br>';
-                               $katlam= mb_strlen($content) - 7;
-                                echo $katlam;
                                 if (mb_strlen($content) > 7) { 
                                     $trimmedContent = mb_substr($content, 3, mb_strlen($content) -7);
                                 } else {
                                     // যদি কন্টেন্ট খুব ছোট হয়, তাহলে এটি খালি দেখান বা আপনার পছন্দমতো কিছু করুন
                                     $trimmedContent = $content; // অথবা ''
                                 }
-                                $katlam1= mb_strlen($trimmedContent);
-                                echo $katlam1;
                             @endphp
-                            {{ $trimmedContent }}
-
-
-                            
-                            <br>
-                            <br>
-        
-                    
-                            
+                            {{ $trimmedContent.'...'}}
                         </p>
-						<a href="#" class="btn btn-outline-primary">পড়ুন</a>
+						<a href="#" class="btn outline-primary" >পড়ুন</a>
 					</div>
 				</div>
 				 @endforeach
                 <!-- পেজিনেশন -->
-               {{ $post_data->onEachSide(2)->links() }}
+                    {{ $post_data->onEachSide(2)->links() }}
+
             </div>
 
 			<div  class="col-lg-1">  </div>

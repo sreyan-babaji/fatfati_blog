@@ -190,13 +190,12 @@ footer a:hover {
     background-color: var(--primary-medium) !important;
 }
 
-.btn-outline-primary {
-    color: var(--primary-medium);
-    border-color: var(--primary-medium);
+.blog-card .outline-primary, .card-body .outline-primary{
+    border-color: var(--primary-dark);
 }
 
-.btn-outline-primary:hover {
-    background-color: var(--primary-medium);
+.blog-card .outline-primary:hover, .card .outline-primary:hover  {
+    background-color: var(--primary-dark);
     color: white;
 }
 

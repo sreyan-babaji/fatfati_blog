@@ -10,10 +10,14 @@ use Illuminate\Support\Str;
 class BlogSiteController extends Controller
 {
      // search
-     public function search(Request $request){
-        $post_data = Post::where('post_title', 'like', '%' .$request->search.'%' )->get();
-        $title = 'Search result';
-        return view('site.site_article',compact('post_data','title'));
+    public function search(Request $request){
+    $post_data = Post::where('post_title', 'like', '%' . $request->search . '%')
+                     ->paginate(9); 
+    foreach($post_data as $post){
+        $post->short_content = Str::limit($post->post_content, 120,'');
+    }
+    $title = 'Search result';
+    return view('site.site_article', compact('post_data', 'title'));
     }
     //home page
     public function blog_home(){
@@ -23,7 +27,7 @@ class BlogSiteController extends Controller
         }
         $post_data=Post::Paginate(4);
         foreach($post_data as $post){
-            $post->short_content = Str::limit($post->post_content, 30, '...');
+            $post->short_content = Str::limit($post->post_content, 180,'');
         }
         $title="home page";
         return view('site.blog_home',compact('post_data','title','category_data')); 
@@ -31,6 +35,9 @@ class BlogSiteController extends Controller
     //article
     public function site_article(){
         $post_data=Post::Paginate(9);
+         foreach($post_data as $post){
+            $post->short_content = Str::limit($post->post_content, 120,'');
+        }
         return view('site.site_article',compact('post_data'),['title' => 'article']); 
     }
     //category
