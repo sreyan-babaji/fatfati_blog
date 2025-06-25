@@ -38,11 +38,16 @@
                         <a href="{{route('category_edit_view',$category->id)}}" class="btn btn-sm btn-edit btn-action" target="_blank" >
                             <i class="bi bi-pencil"></i> এডিট
                         </a>
-                        <a href="{{route('category_delete',$category->id)}}" class="btn btn-sm btn-delete btn-action" onclick="return confirm('Are you sure you want to delete this post?')" >
-                            <i class="bi bi-trash"></i> ডিলিট
-                        </a>
+                           <!-- Trigger Delete Button -->
+                                <a href="#" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#deleteModal{{ $category->id }}" 
+                                class="btn btn-sm btn-delete btn-action">
+                                <i class="bi bi-trash"></i>ডিলিট
+                                </a>
                     </div>
                 </div>
+                <x-delete-modal :content_type="'category'" :content_id="$category->id" />
             </div>
             @endforeach
             

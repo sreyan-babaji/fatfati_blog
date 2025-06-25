@@ -1,7 +1,7 @@
  @extends('site.layout')
  @section('content')
  <!-- About হেডার -->
-    <header class="about-header text-center">
+    <header class="blog-header text-center">
         <div class="container">
             <h1 class="display-4 fw-bold">আমার সম্পর্কে</h1>
             <p class="lead">আমাকে আরও ভালোভাবে জানুন</p>
@@ -46,7 +46,7 @@
                 <h3 class="mb-4">কেন আমি ব্লগ লিখি?</h3>
                 <p class="lead">জ্ঞান শেয়ার করা আমার একটি আবেগ</p>
                 <p>আমি বিশ্বাস করি যে জ্ঞান শেয়ার করার মাধ্যমে আমরা সমৃদ্ধ হতে পারি। আমার ব্লগে আমি যা শিখি তা অন্যদের সাথে শেয়ার করার চেষ্টা করি। বিশেষ করে নতুন ডেভেলপারদের জন্য সহজ করে টিউটোরিয়াল লিখতে আমি ভালোবাসি। এছাড়াও ভ্রমণ এবং জীবনযাপনের অভিজ্ঞতা শেয়ার করলে সেটা অন্যদের জন্য উপকারী হতে পারে বলে আমি মনে করি।</p>
-                <a href="blog.html" class="btn btn-primary mt-3">আমার ব্লগ দেখুন</a>
+                <a href="blog.html" class="btn outline mt-3">আমার ব্লগ দেখুন</a>
             </div>
         </div>
          <hr class="my-5">

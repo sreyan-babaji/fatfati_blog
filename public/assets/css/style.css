@@ -51,8 +51,8 @@
 
 /* Footer */
 footer {
-    background-color: var(--primary-dark);
-    color: white;
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
     padding: 50px 0;
     margin-top: 50px;
 }
@@ -62,7 +62,7 @@ footer h5 {
 }
 
 footer a {
-    color: var(--primary-light);
+    color: var(--primary-dark);
     transition: color 0.3s;
 }
 
@@ -194,9 +194,9 @@ footer a:hover {
     border-color: var(--primary-dark);
 }
 
-.blog-card .outline-primary:hover, .card .outline-primary:hover  {
-    background-color: var(--primary-dark);
-    color: white;
+.blog-card .outline-primary:hover, .card .outline-primary:hover ,.row .outline:hover  {
+    background-color: var(--primary-light);
+    color: var(--accent-color);;
 }
 
 /* Sidebar */
@@ -234,11 +234,11 @@ footer a:hover {
 }
 
 /* Article Page */
-.blog-header {
-    background-color: var(--primary-light);
+.blog-header{
+    background-color: var(--primary-dark);
     padding: 80px 0 40px;
     margin-bottom: 40px;
-    color: var(--primary-dark);
+    color: var(--accent-color);
 }
 
 .blog-post {
@@ -401,20 +401,22 @@ footer a:hover {
 }
 
 /* Utility Classes */
-.btn-primary {
+.card-body .bt-primary , .row .outline {
     background-color: var(--primary-medium);
     border-color: var(--primary-medium);
+    color:var(--accent-color);
 }
 
-.btn-primary:hover {
+.card-body .bt-primary:hover {
     background-color: var(--primary-dark);
     border-color: var(--primary-dark);
+    color:var(--primary-light);
 }
 
 .text-primary {
     color: var(--primary-medium) !important;
 }
 
-.bg-primary {
+.card-body .bg-primary {
     background-color: var(--primary-medium) !important;
 }

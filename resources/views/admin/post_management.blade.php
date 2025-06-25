@@ -86,11 +86,16 @@
                                 <a href="{{ route('post_edit_view',$postdata->id) }}" class="btn btn-sm btn-edit btn-action" target="_blank">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <a href="{{ route('post_delete', $postdata->id) }}" onclick="return confirm('Are you sure you want to delete this post?')" class="btn btn-sm btn-delete btn-action">
-                                    <i class="bi bi-trash"></i>
+                                 <!-- Trigger Delete Button -->
+                                <a href="#" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#deleteModal{{ $postdata->id }}" 
+                                class="btn btn-sm btn-delete btn-action">
+                                <i class="bi bi-trash"></i>
                                 </a>
                             </td>
                         </tr>
+                                <x-delete-modal :content_type="'post'" :content_id="$postdata->id" />
                         @endforeach
                     </tbody>
                 </table>

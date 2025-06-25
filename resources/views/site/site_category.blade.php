@@ -1,7 +1,7 @@
 @extends('site.layout') 
 @section('content')
  <!-- ক্যাটাগরি হেডার -->
-    <header class="category-header text-center">
+    <header class="blog-header text-center">
         <div class="container">
             <h1 class="display-4 fw-bold">ব্লগ ক্যাটাগরি</h1>
             <p class="lead">আপনার পছন্দের বিষয়বস্তু অনুযায়ী ব্লগ পোস্ট ব্রাউজ করুন</p>
@@ -19,7 +19,7 @@
                     <div class="card-body text-center">
                         <h3 class="card-title">{{$category->category_name}}</h3>
                         <p class="card-text">{{$category->category_description}}</p>
-                        <a href="category-posts.html" class="btn btn-primary">পোস্ট দেখুন <span class="badge bg-light text-dark">{{ $category->post_count }}</span></a>
+                        <a href="category-posts.html" class="btn bt-primary">পোস্ট দেখুন <span class="badge bg-light text-dark">{{ $category->post_count }}</span></a>
                     </div>
                 </div>
             </div>

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('site_title')->nullable();
             $table->string('site_slug')->nullable();
             $table->string('site_description')->nullable();
-            $table->string('img_url')->nullable();
+            $table->string('site_logo_url')->nullable();
             $table->string('favicon_url')->nullable();
             $table->string('facebook_url')->nullable();
             $table->string('x_url')->nullable();

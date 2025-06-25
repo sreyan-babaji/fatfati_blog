@@ -15,7 +15,7 @@
     <!-- নেভিগেশন বার -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-top mb-4" id="mainNavbar">
         <div class="container-fluid ">
-            <a class="navbar-brand fw-bold" href="#"><img src="assets/img/logo.png" class="logo"></a>
+            <a class=" navbar-brand fw-bold" href="{{ route('home') }}"><img src="assets/img/logo.png" class="logo"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -57,19 +57,19 @@
                 <div class="col-md-4 mb-4 mb-md-0">
                     <h5>লিংক</h5>
                     <ul class="list-unstyled">
-                        <li><a href="index.html" class="text-white text-decoration-none">হোম</a></li>
-                        <li><a href="blog.html" class="text-white text-decoration-none">ব্লগ</a></li>
-                        <li><a href="categories.html" class="text-white text-decoration-none">ক্যাটাগরি</a></li>
-                        <li><a href="about.html" class="text-white text-decoration-none">আমার সম্পর্কে</a></li>
-                        <li><a href="contact.html" class="text-white text-decoration-none">যোগাযোগ</a></li>
+                        <li><a href="{{ route('home') }}" class=" text-decoration-none">হোম</a></li>
+                        <li><a href="blog.html" class=" text-decoration-none">ব্লগ</a></li>
+                        <li><a href="categories.html" class=" text-decoration-none">ক্যাটাগরি</a></li>
+                        <li><a href="about.html" class=" text-decoration-none">আমার সম্পর্কে</a></li>
+                        <li><a href="contact.html" class=" text-decoration-none">যোগাযোগ</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
                     <h5>সোশ্যাল মিডিয়া</h5>
-                    <a href="#" class="btn btn-outline-light me-2"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="btn btn-outline-light me-2"><i class="bi bi-twitter"></i></a>
-                    <a href="#" class="btn btn-outline-light me-2"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="btn btn-outline-light"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" class="btn btn-outline-dark me-2"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="btn btn-outline-dark me-2"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="btn btn-outline-dark me-2"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="btn btn-outline-dark"><i class="bi bi-linkedin"></i></a>
                 </div>
             </div>
             <hr class="my-4 bg-light">

@@ -1,7 +1,7 @@
  @extends('site.layout')
  @section('content')
  <!-- Contact হেডার -->
-    <header class="contact-header text-center ">
+    <header class="blog-header text-center ">
         <div class="container">
             <h1 class="display-4 fw-bold">যোগাযোগ করুন</h1>
             <p class="lead">আপনার কোন প্রশ্ন বা মতামত থাকলে আমাদের জানান</p>
@@ -72,7 +72,7 @@
                             <label for="message" class="form-label">আপনার মেসেজ</label>
                             <textarea class="form-control" id="message" rows="5" placeholder="আপনার মেসেজ লিখুন..." required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">মেসেজ পাঠান</button>
+                        <button type="submit" class="btn outline">মেসেজ পাঠান</button>
                     </form>
                 </div>
             </div>

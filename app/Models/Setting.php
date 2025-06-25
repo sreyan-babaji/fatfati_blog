@@ -12,7 +12,7 @@ class Setting extends Model
         'site_title',
         'site_slug',
         'site_description',
-        'img_url',
+        'site_logo_url',
         'favicon_url',
         'facebook_url',
         'x_url',

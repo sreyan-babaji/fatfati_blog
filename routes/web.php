@@ -63,10 +63,12 @@ route::get('comments',[CommentController::class,'comment'])->name('comments');
 //settings
 route::get('settings',[SettingsController::class,'settings'])->name('settings');
 //general settings
-Route::post('site-title-update', [SettingsController::class, 'updateTitle'])->name('update_site_title');
-Route::post('site-slug-update', [SettingsController::class, 'updateslug'])->name('update_site_slug');
-Route::post('site-description-update', [SettingsController::class, 'updateDescription'])->name('update_site_description');
-Route::post('site-logo-update', [SettingsController::class, 'updateLogo'])->name('update_site_logo');
-Route::post('site-favicon-update', [SettingsController::class, 'updateFavicon'])->name('update_site_favicon');
+Route::post('site-title-update/{title_id}', [SettingsController::class, 'updateTitle'])->name('update_site_title');
+Route::post('site-slug-update/{slug_id}', [SettingsController::class, 'updateslug'])->name('update_site_slug');
+Route::post('site-description-update/{description_id}', [SettingsController::class, 'updatedescription'])->name('update_site_description');
+Route::post('site-logo-update/{logo_id}', [SettingsController::class, 'updateLogo'])->name('update_site_logo');
+Route::post('site-favicon-update/{fav_id}', [SettingsController::class, 'updateFavicon'])->name('update_site_favicon');
+//social media settings
+Route::post('social-media/{media_id}', [SettingsController::class, 'updatemedia'])->name('update_social_media');
 
 

@@ -29,61 +29,85 @@
             <div class="tab-pane fade show active" id="general" role="tabpanel">
                 <div class="settings-card">
                     <h4><i class="bi bi-globe me-2"></i> সাধারণ সেটিংস</h4>
-                    <form action="{{ route('update_site_title') }}" method="POST">
+                    <form action="{{ route('update_site_title',1) }}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="siteTitle" class="form-label">সাইট টাইটেল</label>
-                            <input type="text" class="form-control" id="siteTitle" name="site_title" value="{{ $settings_data->site_title ?? 'আমার ব্লগ '}}">
+                            <h5><label for="siteTitle" class="form-label">সাইট টাইটেল</label></h5>
+                            <input type="text" class="form-control" id="siteTitle" name="site_title" value="{{ $settings_data->site_title ?? 'My Blog  '}}">
                         </div>
                         <button type="submit" class="btn btn-submit">সংরক্ষণ করুন</button>
                     </form>
+                    
                     <hr>
-                      <form action="{{ route('update_site_slug') }}" method="POST">
+
+                    <form action="{{ route('update_site_slug',1) }}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="siteslug" class="form-label">সাইট স্লাগ</label>
-                            <input type="text" class="form-control" id="siteslug" name="site_slug" value="আমার ব্লগ">
+                            <h5><label for="siteslug" class="form-label">সাইট স্লাগ</label></h5>
+                            <input type="text" class="form-control" id="siteslug" name="site_slug" value="{{ $settings_data->site_slug ?? ' my-blog '}}">
                         </div>
                         <button type="submit" class="btn btn-submit">সংরক্ষণ করুন</button>
                     </form>
+
                     <hr>
-                    <form action="{{ route('update_site_description') }}" method="POST">
+
+                    <form action="{{ route('update_site_description',1) }}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="siteDescription" class="form-label">সাইট বর্ণনা</label>
-                            <textarea class="form-control" id="siteDescription" name="site_description" rows="3">প্রযুক্তি, ভ্রমণ এবং জীবনযাপন নিয়ে আমার চিন্তাভাবনা</textarea>
+                            <h5><label for="siteDescription" class="form-label">সাইট বর্ণনা</label></h5>
+                            <textarea class="form-control" id="siteDescription" name="site_description" rows="3">{{ $settings_data->site_description ?? ' প্রযুক্তি, ভ্রমণ এবং জীবনযাপন নিয়ে আমার চিন্তাভাবনা'}}</textarea>
                         </div>
                         <button type="submit" class="btn btn-submit">সংরক্ষণ করুন</button>
                     </form>
+
                     <hr>
+
                     <div class="row">
-                        <div class="col-4">
-                            <img src="" alt="">
-                         </div>
-                        <div class="col-8">
-                        <form action="{{ route('update_site_logo') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="mb-3">
-                                <label for="siteLogo" class="form-label">সাইট লোগো</label>
-                                <input class="form-control" type="file" id="siteLogo" name="site_logo">
-                                <div class="form-text">প্রস্তাবিত সাইজ: 200px × 50px</div>
-                            </div>
-                            <button type="submit" class="btn btn-submit">সংরক্ষণ করুন</button>
-                        </form>
+                        <div class="col-7">
+                            <form action="{{ route('update_site_logo',1) }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="mb-3">
+                                    <h5><label for="siteLogo" class="form-label">সাইট লোগো আপলোড</label></h5>
+                                    <input class="form-control" type="file" id="siteLogo" name="site_logo">
+                                    <div class="form-text">প্রস্তাবিত সাইজ: 200px × 50px</div>
+                                </div>
+                                <button type="submit" class="btn btn-submit">সংরক্ষণ করুন</button>
+                            </form>
+                        </div>
+                        <div class="col-1"></div>
+                        <div class="col-2 border p-2">
+                            <p>লগো প্রিভিউ</p>
+                            <img src="{{ $settings_data->site_logo_url ?? 'assets/img/feature-1.jpg'}}"
+                                alt=""
+                                style="max-width: 350px; max-height: 130px;">
                         </div>
                     </div>
+
                     <hr>
-                    <form action="{{ route('update_site_favicon') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="siteFavicon" class="form-label">ফেভিকন</label>
-                            <input class="form-control" type="file" id="siteFavicon" name="site_favicon">
-                            <div class="form-text">প্রস্তাবিত সাইজ: 32px × 32px</div>
+
+                    <div class="row">
+                        <div class="col-7">
+                            <form action="{{ route('update_site_favicon',1) }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="mb-3">
+                                    <h5><label for="siteFavicon" class="form-label">ফেভিকন আপলোড</label></h5>
+                                    <input class="form-control" type="file" id="siteFavicon" name="site_favicon">
+                                    <div class="form-text">প্রস্তাবিত সাইজ: 32px × 32px</div>
+                                </div>
+                                <button type="submit" class="btn btn-submit">সংরক্ষণ করুন</button>
+                            </form>
                         </div>
-                        <button type="submit" class="btn btn-submit">সংরক্ষণ করুন</button>
-                    </form>
+                        <div class="col-1"></div>
+                        <div class="col-2 border p-2">
+                            <p>ফেব আইকন প্রিভিউ</p>
+                            <img src="{{ $settings_data->img_url ?? 'assets/img/feature-1.jpg'}}"
+                                alt=""
+                                style="max-width: 52px; max-height: 52px;">
+                        </div>
+                    </div>
                 </div>
             </div>
+
 
             <!-- এসইও সেটিংস -->
             <div class="tab-pane fade" id="seo" role="tabpanel">
@@ -120,26 +144,26 @@
             <div class="tab-pane fade" id="social" role="tabpanel">
                 <div class="settings-card">
                     <h4><i class="bi bi-share me-2"></i> সোশ্যাল মিডিয়া</h4>
-                    <form>
+                    <form action="{{ route('update_social_media',1) }}" method="POST">
                         <div class="mb-3">
                             <label for="facebookUrl" class="form-label">Facebook URL</label>
-                            <input type="text" class="form-control" id="facebookUrl" value="https://facebook.com/amarblog">
+                            <input type="text" name="facebook_url" class="form-control" id="facebookUrl" value="{{ $settings_data->facebook_url ?? 'facebook.com'}}">
                         </div>
                         <div class="mb-3">
                             <label for="twitterUrl" class="form-label">Twitter URL</label>
-                            <input type="text" class="form-control" id="twitterUrl" value="https://twitter.com/amarblog">
+                            <input type="text" name="x_url" class="form-control" id="twitterUrl" value="{{ $settings_data->x_url ?? 'x.com'}}">
                         </div>
                         <div class="mb-3">
                             <label for="instagramUrl" class="form-label">Instagram URL</label>
-                            <input type="text" class="form-control" id="instagramUrl" value="https://instagram.com/amarblog">
+                            <input type="text" name="insta_url" class="form-control" id="instagramUrl" value="{{ $settings_data->insta_url ?? 'instagram.com'}}">
                         </div>
                         <div class="mb-3">
                             <label for="linkedinUrl" class="form-label">LinkedIn URL</label>
-                            <input type="text" class="form-control" id="linkedinUrl" value="https://linkedin.com/company/amarblog">
+                            <input type="text" name="linkedin_url" class="form-control" id="linkedinUrl" value="{{ $settings_data->linkedin_url ?? 'linkedin.com'}}">
                         </div>
                         <div class="mb-3">
                             <label for="youtubeUrl" class="form-label">YouTube URL</label>
-                            <input type="text" class="form-control" id="youtubeUrl" value="https://youtube.com/amarblog">
+                            <input type="text" name="youtube_url" class="form-control" id="youtubeUrl" value="{{ $settings_data->youtube_url ?? 'youtube.com'}}">
                         </div>
                         <div class="form-check form-switch mb-3">
                             <input class="form-check-input" type="checkbox" id="enableSharing" checked>

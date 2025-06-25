@@ -29,7 +29,7 @@ class UserController extends Controller
   public function user_delete($user_id){
     $user_data = User::find($user_id);
     if($user_data->delete()){
-        return redirect()->route('users')->with('success','post deleted successfully');
+        return redirect()->route('users')->with('success','user deleted successfully');
       }
     }
     //user edit view

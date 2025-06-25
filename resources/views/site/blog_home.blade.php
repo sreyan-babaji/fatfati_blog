@@ -103,7 +103,7 @@
                             @csrf
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="খুঁজুন..." required>
-                                <button class="btn btn-primary" name="submit" type="submit"><i class="bi bi-search"></i></button>
+                                <button class="btn bt-primary" name="submit" type="submit"><i class="bi bi-search"></i></button>
                             </div>
                         </form>
                     </div>
