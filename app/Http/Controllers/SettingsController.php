@@ -10,15 +10,20 @@ class SettingsController extends Controller
     public function settings(){
         
         $settings_data=Setting::first();
+        if(!$settings_data){
+            $settings_data = new Setting();
+
+        }
         return view('admin.settings',compact('settings_data'),['title' => 'settings']);
     }
     
     public function updateTitle(Request $request, $title_id){
+        
         $settings_data =  Setting::find($title_id);
         $settings_data->site_title = $request->site_title;
-        if ($settings_data->update()) {
-            return redirect()->back()->with('success', 'title update successfully');
-        } 
+        $settings_data->update();
+        return redirect()->back()->with('success', 'title update successfully');
+        
     }
 
     public function updateslug(Request $request, $slug_id){

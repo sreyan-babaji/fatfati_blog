@@ -19,7 +19,8 @@ class PostController extends Controller
     //category search
      public function category_search($category_id){
         $categories=Category::select('id','category_name')->get();
-        $post_data = Post::where('post_category', $category_id)->paginate(10);
+        $data=['post_category' => $category_id];
+        $post_data = Post::where($data)->paginate(10);
         $title = 'category Search result';
         return view('admin.post_management',compact('post_data','title','categories'));
     }
