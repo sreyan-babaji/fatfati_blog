@@ -35,6 +35,9 @@ class PostController extends Controller
     public function post_management(){
         $categories=Category::select('id','category_name')->get();
         $post_data=Post::paginate(8);
+            foreach ($post_data as $post) {
+            $post->category_name = Category::where('id', $post->id)->first();
+        }
         $title='Post Management';
         return view('admin.post_management',compact('post_data','title','categories'));
     }

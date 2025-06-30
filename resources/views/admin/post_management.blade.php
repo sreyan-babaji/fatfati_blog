@@ -68,7 +68,7 @@
                             <td>{{$postdata->id}}</td>
                             <td>{{$postdata->post_title}}</td>
                             <td>{{$postdata->author}}</td>
-                            <td>{{$category->category_name}}</td>
+                            <td>{{$postdata->category_name}}</td>
                             @if($postdata->post_status == 'published')
                             <td><span class="badge-published ">Published</span></td>
                             @elseif($postdata->post_status == 'draft')

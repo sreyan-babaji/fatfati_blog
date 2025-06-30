@@ -44,7 +44,7 @@
 
         <!-- শিরোনাম সেকশন -->
         <div class="col-md-6">
-        <label for="user_role" class="form-label fw-bold">ক্যাটাগরি</label>
+        <label for="user_role" class="form-label fw-bold">ইউজার রোল</label>
         <select class="form-select rounded-3" id="user_role" name="user_role" required>
             <option value="{{ $user_role_data->id }}" selected>{{ $user_role_data->role_name }}</option>
             @foreach($all_roles as $role)

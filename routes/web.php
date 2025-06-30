@@ -25,7 +25,9 @@ Route::get('contact',[BlogSiteController::class,'site_contact'])->name('site_con
 route::get('dashboard',[DashboardController::class,'admin_dashboard'])->name('dashboard');
 //profile view
 route::get('profile',[ProfileController::class,'profile'])->name('profile');
-route::get('profile-update',[ProfileController::class,'profile_update'])->name('profile_update');
+route::post('profile-picture-update',[ProfileController::class,'profile_picture_update'])->name('profile_picture_update');
+route::post('profile-data-update',[ProfileController::class,'profile_data_update'])->name('profile_data_update');
+route::post('password-update',[ProfileController::class,'password_update'])->name('password_update');
 //Category
 route::post('category-search',[CategoryController::class,'category_search'])->name('search_category'); // seame hoye gese . u
 route::get('category-manage',[CategoryController::class,'category_manage'])->name('category_manage');

@@ -7,15 +7,17 @@
         <div class="row align-items-center">
             <div class="col-md-2">
                 <div class="profile-picture-container">
-                    <img src="https://via.placeholder.com/150" class="profile-picture" alt="প্রোফাইল ছবি">
+                    <img src="{{ $profile_data->profile_pic_url ?? 'assets/img/about.jpg'}}" class="profile-picture" alt="প্রোফাইল ছবি" style="max-width: 350px; max-height: 130px;">
                     <button class="btn btn-sm btn-change-picture" data-bs-toggle="modal" data-bs-target="#changePictureModal">
                         <i class="bi bi-camera"></i> ছবি পরিবর্তন
                     </button>
                 </div>
             </div>
-            <div class="col-md-6">
-                <h2 class="profile-name">আহসান হাবীব</h2>
-                <p class="profile-role text-muted"><i class="bi bi-person-badge"></i> এডমিনিস্ট্রেটর</p>
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-4">
+                <h2 class="profile-name">{{$profile_data->name}}</h2>
+                <p class="profile-role text-muted"><i class="bi bi-person-badge"></i> {{$user_role_data->role_name}}</p>
                 <div class="profile-stats d-flex gap-4 mt-3">
                     <div>
                         <span class="stat-number">১২৪</span>
@@ -50,7 +52,7 @@
                 <div class="card-body">
                     <div class="info-item">
                         <span class="info-label"><i class="bi bi-envelope"></i> ইমেইল:</span>
-                        <span class="info-value">ahsan@example.com</span>
+                        <span class="info-value">{{$profile_data->email }}</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label"><i class="bi bi-telephone"></i> ফোন:</span>
@@ -196,23 +198,26 @@
                 <h5 class="modal-title" id="changePictureModalLabel">প্রোফাইল ছবি পরিবর্তন</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="image-upload-container text-center mb-3">
-                    <i class="bi bi-cloud-arrow-up" style="font-size: 2rem; color: var(--primary-light);"></i>
-                    <p class="mt-2">ছবি আপলোড করতে ক্লিক করুন বা ড্র্যাগ এন্ড ড্রপ করুন</p>
-                    <img id="newProfilePicturePreview" class="image-preview" src="#" alt="নতুন প্রোফাইল ছবি">
-                    <input type="file" id="newProfilePicture" accept="image/*" style="display: none;">
+            <form action="{{route('profile_picture_update')}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="image-upload-container text-center mb-3">
+                        <i class="bi bi-cloud-arrow-up" style="font-size: 2rem; color: var(--primary-light);"></i>
+                        <p class="mt-2">ছবি আপলোড করতে ক্লিক করুন বা ড্র্যাগ এন্ড ড্রপ করুন</p>
+                        <img id="newProfilePicturePreview" class="image-preview" src="#" alt="নতুন প্রোফাইল ছবি">
+                        <input type="file" name="profile_picture" id="newProfilePicture" accept="image/*" style="display: none;">
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-outline-danger btn-sm" id="removeProfilePicture">
+                            <i class="bi bi-trash"></i> বর্তমান ছবি অপসারণ করুন
+                        </button>
+                    </div>
                 </div>
-                <div class="text-center">
-                    <button class="btn btn-outline-danger btn-sm" id="removeProfilePicture">
-                        <i class="bi bi-trash"></i> বর্তমান ছবি অপসারণ করুন
-                    </button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বাতিল</button>
+                    <button type="submit" name="submit" class="btn btn-primary">সংরক্ষণ করুন</button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বাতিল</button>
-                <button type="button" class="btn btn-primary">সংরক্ষণ করুন</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -226,46 +231,40 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="firstName" class="form-label">নামের প্রথম অংশ</label>
-                            <input type="text" class="form-control" id="firstName" value="আহসান">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="lastName" class="form-label">নামের শেষ অংশ</label>
-                            <input type="text" class="form-control" id="lastName" value="হাবীব">
-                        </div>
+                <form action="{{route('profile_data_update')}}" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="Name" class="form-label">নাম</label>
+                        <input type="text" name="name" class="form-control" id="Name" value="{{$profile_data->name}}">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">ইমেইল</label>
-                        <input type="email" class="form-control" id="email" value="ahsan@example.com">
+                        <input type="email" name="email" class="form-control" id="email" value="{{$profile_data->email}}">
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">ফোন নম্বর</label>
-                        <input type="tel" class="form-control" id="phone" value="+880 1XXX XXXXXX">
+                        <input type="tel"  name="phone" class="form-control" id="phone" value="+880 1XXX XXXXXX">
                     </div>
                     <div class="mb-3">
                         <label for="birthDate" class="form-label">জন্ম তারিখ</label>
-                        <input type="date" class="form-control" id="birthDate" value="1990-01-15">
+                        <input type="date"  name="date_of_birth" class="form-control" id="birthDate" value="1990-01-15">
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">ঠিকানা</label>
-                        <textarea class="form-control" id="address" rows="2">১২৩/বি, ধানমন্ডি, ঢাকা-১২০৫</textarea>
+                        <textarea class="form-control"  name="address" id="address" rows="2">১২৩/বি, ধানমন্ডি, ঢাকা-১২০৫</textarea>
                     </div>
                     <div class="mb-3">
                         <label for="website" class="form-label">ওয়েবসাইট</label>
-                        <input type="url" class="form-control" id="website" value="www.ahsanhabib.com">
+                        <input type="url"  name="website" class="form-control" id="website" value="www.ahsanhabib.com">
                     </div>
                     <div class="mb-3">
                         <label for="bio" class="form-label">বায়ো</label>
-                        <textarea class="form-control" id="bio" rows="3">আমি একজন ওয়েব ডেভেলপার এবং ব্লগার। নতুন প্রযুক্তি নিয়ে কাজ করতে ভালোবাসি।</textarea>
+                        <textarea class="form-control"  name="biodata" id="bio" rows="3">আমি একজন ওয়েব ডেভেলপার এবং ব্লগার। নতুন প্রযুক্তি নিয়ে কাজ করতে ভালোবাসি।</textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বাতিল</button>
-                <button type="button" class="btn btn-primary">পরিবর্তনসমূহ সংরক্ষণ করুন</button>
+                <button type="submit" name="submit" class="btn btn-primary">পরিবর্তনসমূহ সংরক্ষণ করুন</button>
             </div>
         </div>
     </div>
@@ -280,18 +279,18 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="{{route('password_update')}}" method="POST">
                     <div class="mb-3">
                         <label for="currentPassword" class="form-label">বর্তমান পাসওয়ার্ড</label>
-                        <input type="password" class="form-control" id="currentPassword">
+                        <input type="password" name="current_password" class="form-control" id="currentPassword">
                     </div>
                     <div class="mb-3">
                         <label for="newPassword" class="form-label">নতুন পাসওয়ার্ড</label>
-                        <input type="password" class="form-control" id="newPassword">
+                        <input type="password" name="new_password" class="form-control" id="newPassword">
                     </div>
                     <div class="mb-3">
                         <label for="confirmPassword" class="form-label">নতুন পাসওয়ার্ড নিশ্চিত করুন</label>
-                        <input type="password" class="form-control" id="confirmPassword">
+                        <input type="password" name="confirm_password" class="form-control" id="confirmPassword">
                     </div>
                     <div class="alert alert-info">
                         <i class="bi bi-info-circle"></i> পাসওয়ার্ডে কমপক্ষে ৮টি অক্ষর, একটি সংখ্যা এবং একটি বিশেষ অক্ষর থাকা আবশ্যক।
@@ -300,7 +299,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বাতিল</button>
-                <button type="button" class="btn btn-primary">পাসওয়ার্ড আপডেট করুন</button>
+                <button type="submit" name="submit" class="btn btn-primary">পাসওয়ার্ড আপডেট করুন</button>
             </div>
         </div>
     </div>

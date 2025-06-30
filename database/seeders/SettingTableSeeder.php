@@ -22,7 +22,7 @@ class SettingTableSeeder extends Seeder
             'favicon_url' => 'assets/img/feature-1.jpg',
             'facebook_url' => 'facebook.com/sinhasreyan',
             'x_url' => 'x.com/idnai',
-            'insta_url ' => 'instagram.com/poredimu',
+            'insta_url' => 'instagram.com/poredimu',
             'linkedin_url' => 'linkedin.com/ekhonnai',
             'youtube_url' => 'youtube.com/channelnai'
             ]
