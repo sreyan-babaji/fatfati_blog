@@ -10,6 +10,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\Authentication;
 
 /*-------website view all route-----------*/
 Route::post('search',[BlogSiteController::class,'search'])->name('search');
@@ -21,6 +22,10 @@ Route::get('contact',[BlogSiteController::class,'site_contact'])->name('site_con
 
 
 /*-------admin pannel all route-----------*/
+//authentication
+route::get('registration',[Authentication::class,'registration'])->name('registration');
+route::post('user-create/user_id',[Authentication::class,'user_create'])->name('user_create');
+route::get('login',[Authentication::class,'login'])->name('login');
 //dashboard
 route::get('dashboard',[DashboardController::class,'admin_dashboard'])->name('dashboard');
 //profile view

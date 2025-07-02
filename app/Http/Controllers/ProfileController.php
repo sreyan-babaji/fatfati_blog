@@ -10,12 +10,16 @@ class ProfileController extends Controller
 {
     public function profile(){
         $profile_data=User::find(1);
-        $user_role_data = UserRole::where('id', $profile_data->user_role )->first();
+        if(!$profile_data){
+            return redirect()->back()->with('falied', 'data is not found');
+        }
+        $user_role_data = UserRole::where('id', $profile_data->user_role)->first();
         $title="profile";
         return view('admin.profile',compact('profile_data','user_role_data','title'));
     }
     public function profile_picture_update(){
         $profile_data=User::find(1);
+
         $profile_data->profile_pic_url = $request->profile_picture;
          if ($profile_data->update()) {
             return redirect()->back()->with('success', 'picture update successfully');
@@ -29,7 +33,7 @@ class ProfileController extends Controller
             return redirect()->back()->with('success', 'profile data successfully');
         } 
     }
-    public function password_update(){
+    public function password_update(Request $request){
         $profile_data=User::find(1);
         if($profile_data->password != $request->current_password){
              return redirect()->back()->with('failed', 'sothik password din');
