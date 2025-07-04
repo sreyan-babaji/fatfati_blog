@@ -11,7 +11,7 @@
     <!-- Custom CSS -->
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #332D56;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -30,7 +30,7 @@
             margin-bottom: 2rem;
         }
         .login-header h2 {
-            color: #0d6efd;
+            color: #71C0BB;
             font-weight: 600;
         }
         .form-control {
@@ -41,6 +41,11 @@
             width: 100%;
             padding: 0.75rem;
             font-weight: 600;
+            background-color: #332D56;
+            color:#E3EEB2;
+        }
+        .btn-login:hover{
+            border-color: #332D56;
         }
         .social-login {
             margin: 1.5rem 0;
@@ -98,12 +103,12 @@
             <p class="text-muted">Please sign in to continue</p>
         </div>
         
-        <form>
+        <form action="{{route('loged_in')}}" method="POST">
             <div class="mb-3">
                 <label for="email" class="form-label">Email Address</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email" required>
                 </div>
             </div>
             
@@ -111,7 +116,7 @@
                 <label for="password" class="form-label">Password</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                    <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
                     <button class="btn btn-outline-secondary" type="button" id="togglePassword">
                         <i class="fas fa-eye"></i>
                     </button>
@@ -128,7 +133,7 @@
                 </div>
             </div>
             
-            <button type="submit" class="btn btn-primary btn-login">Login</button>
+            <button type="submit" class="btn btn-login">Login</button>
             
             <div class="divider">
                 <span class="divider-text">OR CONTINUE WITH</span>

@@ -24,8 +24,9 @@ Route::get('contact',[BlogSiteController::class,'site_contact'])->name('site_con
 /*-------admin pannel all route-----------*/
 //authentication
 route::get('registration',[Authentication::class,'registration'])->name('registration');
-route::post('user-create/user_id',[Authentication::class,'user_create'])->name('user_create');
-route::get('login',[Authentication::class,'login'])->name('login');
+route::post('user-create',[Authentication::class,'user_create'])->name('user_create');
+route::get('login-view',[Authentication::class,'login_view'])->name('login_view');
+route::get('loged_in',[Authentication::class,'loged_in'])->name('loged_in');
 //dashboard
 route::get('dashboard',[DashboardController::class,'admin_dashboard'])->name('dashboard');
 //profile view
