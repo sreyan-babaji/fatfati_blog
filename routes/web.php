@@ -26,11 +26,12 @@ Route::get('contact',[BlogSiteController::class,'site_contact'])->name('site_con
 route::get('registration',[Authentication::class,'registration'])->name('registration');
 route::post('user-create',[Authentication::class,'user_create'])->name('user_create');
 route::get('login-view',[Authentication::class,'login_view'])->name('login_view');
-route::get('loged_in',[Authentication::class,'loged_in'])->name('loged_in');
+route::post('loged_in',[Authentication::class,'loged_in'])->name('loged_in');
+route::get('logout',[Authentication::class,'logout'])->name('logout');
 //dashboard
 route::get('dashboard',[DashboardController::class,'admin_dashboard'])->name('dashboard');
 //profile view
-route::get('profile',[ProfileController::class,'profile'])->name('profile');
+route::get('profile',[ProfileController::class,'profile'])->name('profile')->middleware('auth');
 route::post('profile-picture-update',[ProfileController::class,'profile_picture_update'])->name('profile_picture_update');
 route::post('profile-data-update',[ProfileController::class,'profile_data_update'])->name('profile_data_update');
 route::post('password-update',[ProfileController::class,'password_update'])->name('password_update');

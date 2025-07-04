@@ -62,7 +62,7 @@
                         @else
                             <label for="Name" class="form-label">Name</label>
                         @enderror
-                        <input type="text" class="form-control" name="name" id="Name" required>
+                        <input type="text" class="form-control" name="name" id="Name" value="{{old('name')}}" required>
                     </div>
                 </div>
                 
@@ -72,7 +72,7 @@
                     @else
                         <label for="email" class="form-label">Email Address</label>
                     @enderror
-                    <input type="email" class="form-control" name="email" id="email" required>
+                    <input type="email" class="form-control" name="email" id="email" value="{{old('email')}}" required>
                 </div>
                 
                 <div class="mb-3">
@@ -81,7 +81,7 @@
                     @else
                         <label for="phone" class="form-label">Phone Number</label>
                     @enderror
-                    <input type="tel" class="form-control" name="phone" id="phone">
+                    <input type="tel" class="form-control" name="phone" value="{{old('phone')}}" id="phone">
                 </div>
                 
                 <div class="row mb-3">
@@ -91,7 +91,7 @@
                         @else
                             <label for="password" class="form-label">Password</label>
                         @enderror
-                        <input type="password" class="form-control" name="password" id="password" required>
+                        <input type="password" class="form-control" name="password" value="{{old('password')}}"  id="password" required>
                     </div>
                     <div class="col-md-6">
                         @error('password_confirmation')

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class Authentication extends Controller
 {
@@ -68,11 +69,20 @@ class Authentication extends Controller
     }
     //loged in
     public function loged_in(Request $request){
-        $user_data=User::select('id','email')->get();
-            foreach ($user_data as $user) {
-            $user_name = User::where('email', $request->email)->first();
-            $user_pass = User::where('password', $request->password)->first();
+
+        if (Auth::attempt(
+            ['email' => $request->email, 'password' => $request->password]
+            )) {
+            return redirect()->route('dashboard');
+
+            // Auth::user()->id;
+        } else{
+            return redirect()->route('login_view');
         }
-        return view('auth.login'); 
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login_view')->with('success', 'User logout successfully');
     }
 }
