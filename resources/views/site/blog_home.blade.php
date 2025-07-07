@@ -55,20 +55,22 @@
             <!-- ব্লগ পোস্ট -->
             <div class="col-lg-8">
                 <h2 class="mb-4">সাম্প্রতিক পোস্ট</h2>
-                
-                <!-- ব্লগ কার্ড  -->
+
+
+
+                <!-- ব্লগ কার্ড 1 -->
                  @foreach($post_data as $post)
-				<div class="card blog-card overflow-hidden">
-					<div class="card-img-container">
-						<img src="assets/img/feature-1.jpg" class="card-img-top" alt="ব্লগ পোস্ট ইমেজ">
-					</div>
-					<div class="card-body">
-						<div class="d-flex justify-content-between mb-2">
-							<span class="badge text-white">প্রযুক্তি</span>
-							<small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
-						</div>
-						<h5 class="card-title">{{$post->post_title}}</h5>
-						<p class="card-text">
+                <div class="card blog-card overflow-hidden">
+                    <div class="card-img-container">
+                        <img src="../assets/img/feature-1.jpg" class="card-img-top" alt="ব্লগ পোস্ট ইমেজ">
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="badge bg-primary">প্রযুক্তি</span>
+                            <small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
+                        </div>
+                        <h5 class="card-title">{{$post->post_title}}</h5>
+                        <p class="card-text">
                         
                             @php
                                 $content = $post->short_content;
@@ -82,10 +84,23 @@
                             @endphp
                             {{ $trimmedContent.'...'}}
                         </p>
-						<a href="#" class="btn outline-primary" >পড়ুন</a>
-					</div>
-				</div>
-				 @endforeach
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                            <a href="{{route('post_show',$post->id)}}" class="btn outline-primary" >পড়ুন</a>
+                            <small class="text-muted">
+                                <i class="fas fa-eye me-1"></i> ১৫৪ বার দেখা হয়েছে
+                            </small>
+                            </div>
+                             <a href="javascript:void(0)" class="text-decoration-none  me-2 comment" 
+                                onclick="showComments({{ $post->id }})">
+                                <i class="fas fa-comment"></i> 20 টি কমেন্ট
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <x-comment-modal  :content_id="$post->id" />
+                @endforeach
+
                 <!-- পেজিনেশন -->
                     {{ $post_data->onEachSide(2)->links() }}
 

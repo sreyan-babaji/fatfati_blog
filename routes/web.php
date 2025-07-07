@@ -16,6 +16,7 @@ use App\Http\Controllers\Authentication;
 Route::post('search',[BlogSiteController::class,'search'])->name('search');
 Route::get('/',[BlogSiteController::class,'blog_home'])->name('home');
 Route::get('article',[BlogSiteController::class,'site_article'])->name('site_article');
+Route::get('post-show/{post_id}',[BlogSiteController::class,'post_show'])->name('post_show');
 Route::get('category',[BlogSiteController::class,'site_category'])->name('site_category');
 Route::get('about',[BlogSiteController::class,'site_about'])->name('site_about');
 Route::get('contact',[BlogSiteController::class,'site_contact'])->name('site_contact');

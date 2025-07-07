@@ -19,6 +19,7 @@ class BlogSiteController extends Controller
     $title = 'Search result';
     return view('site.site_article', compact('post_data', 'title'));
     }
+
     //home page
     public function blog_home(){
         $category_data=Category::select('id','category_name')->get();
@@ -32,6 +33,7 @@ class BlogSiteController extends Controller
         $title="home page";
         return view('site.blog_home',compact('post_data','title','category_data')); 
     }
+
     //article
     public function site_article(){
         $post_data=Post::Paginate(9);
@@ -40,6 +42,14 @@ class BlogSiteController extends Controller
         }
         return view('site.site_article',compact('post_data'),['title' => 'article']); 
     }
+
+    //single post show
+     public function post_show($post_id){
+        $post_data=Post::find($post_id);
+        $title="see post";
+       return view('site.single_post',compact('post_data','title')); 
+    }
+
     //category
     public function site_category(){
         $category_data=Category::Paginate(4);
@@ -49,10 +59,12 @@ class BlogSiteController extends Controller
         //$postCount = Post::where('post_category','3')->count();
        return view('site.site_category',compact('category_data'),['title' => 'category']); 
     }
+
     //about
     public function site_about(){
        return view('site.site_about',['title' => 'about']); 
     }
+
     //contact
      public function site_contact(){
        return view('site.site_contact',['title' => 'contact']); 

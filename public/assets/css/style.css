@@ -198,6 +198,18 @@ footer a:hover {
     background-color: var(--primary-light);
     color: var(--accent-color);;
 }
+.comment {
+    color: var(--primary-dark);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.comment:hover {
+    color: var(--accent-color);
+    background-color: var(--primary-light);
+    padding: 3px 5px;
+    border-radius: 5px;
+}
 
 /* Sidebar */
 .homeside, .blog-sidebar {
