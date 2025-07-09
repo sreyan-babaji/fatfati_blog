@@ -106,18 +106,26 @@
         <form action="{{route('loged_in')}}" method="POST">
             @csrf
             <div class="mb-3">
-                <label for="email" class="form-label">Email Address</label>
+                @error('email')
+                <label for="email" class="form-label">{{ $message }}</label>
+                else
+                <label for="email" class="form-label">Your Email</label>
+                @enderror
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email" required>
+                    <input type="email" class="form-control" name="email" id="email" value="{{old('email')}}" placeholder="Enter your email" required>
                 </div>
             </div>
             
             <div class="mb-3">
+                @error('password')
+                <label for="password" class="form-label">{{ $message }}</label>
+                @else
                 <label for="password" class="form-label">Password</label>
+                @enderror
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                    <input type="password" class="form-control" id="password" name="password" value="{{old('password')}}" placeholder="Enter your password" required>
                     <button class="btn btn-outline-secondary" type="button" id="togglePassword">
                         <i class="fas fa-eye"></i>
                     </button>

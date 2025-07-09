@@ -45,9 +45,9 @@ class BlogSiteController extends Controller
 
     //single post show
      public function post_show($post_id){
-        $post_data=Post::find($post_id);
+        $post_data = Post::find($post_id);
         $title="see post";
-       return view('site.single_post',compact('post_data','title')); 
+       return view('site.post_show',compact('post_data','title')); 
     }
 
     //category

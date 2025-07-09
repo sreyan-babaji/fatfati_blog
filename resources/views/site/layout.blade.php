@@ -37,7 +37,27 @@
                         <a class="nav-link" href="{{ route('site_contact') }}">যোগাযোগ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">লগইন/রেজিস্ট্রেশন</a>
+                        @if(Auth::check())
+                        <div class="dropdown ">
+                            <a class="dropdown-toggle d-flex align-items-center text-decoration-none comment-author nav-link" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person me-2"></i><span>{{ Auth::user()->name }}</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="{{route('profile',Auth::user()->id)}}">প্রোফাইল</a></li>
+                                <li><a class="dropdown-item" href="#">পছন্দের ব্লগ</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('logout') }}">
+                                        <i class="bi bi-box-arrow-right me-2"></i> লগ আউট
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>   
+                        @else
+                            <a class="nav-link" href="{{ route('login_view') }}">
+                                <i class="bi bi-box-arrow-in-right me-2"></i> লগ ইন
+                            </a>
+                        @endif
                     </li>
                 </ul>
             </div>
@@ -80,6 +100,6 @@
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="assets/js/blog_site.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    <<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>

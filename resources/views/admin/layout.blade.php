@@ -39,7 +39,11 @@
                 <a href="{{ route('settings') }}"><i class="bi bi-gear"></i> সেটিংস</a>
             </li>
             <li>
-                <a href="#"><i class="bi bi-box-arrow-right"></i> লগ আউট</a>
+                @if(Auth::check())
+                <a href="{{ route('logout') }}"><i class="bi bi-box-arrow-right"></i> লগ আউট</a>
+                @else
+                <a href="{{ route('login_view') }}"><i class="bi bi-box-arrow-right"></i> লগ ইন</a>
+                @endif
             </li>
         </ul>
     </div>
@@ -69,16 +73,21 @@
                     
                 </div>
                 <div class="dropdown">
+                    @if(Auth::check())
                     <a class="dropdown-toggle d-flex align-items-center text-decoration-none comment-author" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
-                        <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="Profile">
-                        <span>এডমিন</span>
+                        <img src="assets/img/feature-1.jpg" style="max-width: 150px; max-height: 40px;" class="rounded-circle me-2" alt="Profile">
+                        <span>{{Auth::User()->user_role}}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="{{route('profile')}}"><i class="bi bi-person me-2"></i> প্রোফাইল</a></li>
+                        <li><a class="dropdown-item" href="{{route('profile',Auth::user()->id)}}"><i class="bi bi-person me-2"></i>{{Auth::user()->name}}</a></li>
                         <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i> সেটিংস</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="{{ route('logout') }}"><i class="bi bi-box-arrow-right me-2"></i> লগ আউট</a></li>
+                        
                     </ul>
+                    @else
+                    <a class="dropdown-item" href="{{ route('login_view') }}"><i class="bi bi-box-arrow-right me-2"></i> লগ ইন</a>
+                    @endif
                 </div>
             </div>
         </div>

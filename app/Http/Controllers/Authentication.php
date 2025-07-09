@@ -67,17 +67,39 @@ class Authentication extends Controller
     public function login_view(){
         return view('auth.login'); 
     }
+
     //loged in
     public function loged_in(Request $request){
+        
+        $validator= Validator::make($request->all(),[
+            'email' => 'required|email|max:100',
+            'password' => 'required|min:8|max:20'
+        ],[
+            'email.required' => 'আপনার ইমেইল দিন',
+            'email.email' => 'সঠিক ইমেইল দিন',
+            'email.max' => 'ইমেইল 100 অক্ষরের মধ্যে হতে হবে',
 
-        if (Auth::attempt(
-            ['email' => $request->email, 'password' => $request->password]
-            )) {
-            return redirect()->route('dashboard');
+            'password.required' => 'পাসওয়ার্ড দিন',
+            'password.min' => 'পাসওয়ার্ড সর্বনিম্ন ৮ অক্ষরের হতে হবে',
+            'password.max' => 'পাসওয়ার্ড সর্বোচ্চ 20 অক্ষরের হতে হবে'
+        ]);
 
-            // Auth::user()->id;
-        } else{
-            return redirect()->route('login_view');
+        if($validator->fails()){
+            return redirect()->back()->witherrors($validator)->withinput();
+        }
+
+        if($validator->passes()){
+            if(Auth::attempt(['email' =>$request->email, 'password' => $request->password])){
+                if(Auth::User()->user_role=='1'){
+                    return redirect()->route('dashboard');
+                }
+                else{
+                    return redirect()->route('home');
+                }
+            }
+            else{
+                return redirect()->route('login_view');
+            }
         }
     }
 
