@@ -72,11 +72,11 @@
                                     </div>
                                 </div>
                             </td>
-                            @if($user->user_role == 'admin')
+                            @if($user->role_name == 'admin')
                             <td><span class="badge badge-admin ">Admin</span></td>
-                            @elseif($user->user_role == 'user')
+                            @elseif($user->role_name == 'user')
                             <td><span class="badge badge-user ">User</span></td>
-                            @elseif($user->user_role == 'editor')
+                            @elseif($user->role_name == 'editor')
                             <td><span class="badge badge-author">Editor</span></td>
                             @else
                             <td class="">No role</td>

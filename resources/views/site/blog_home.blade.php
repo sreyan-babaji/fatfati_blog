@@ -66,7 +66,7 @@
                     </div>
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-2">
-                            <span class="badge bg-primary">প্রযুক্তি</span>
+                            <span class="badge bg-primary">{{$post->category_name}}</span>
                             <small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
                         </div>
                         <h5 class="card-title">{{$post->post_title}}</h5>

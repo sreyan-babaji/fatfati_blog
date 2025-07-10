@@ -51,13 +51,13 @@ class Authentication extends Controller
         if($validator->passes()){
         $user_create = new User();
         $user_create->name = $request->name;
-        $user_create->user_role = 'user';
+        $user_create->user_role = '3';
         $user_create->email = $request->email;
         $user_create->phone = $request->phone;
         $user_create->password = Hash::make($request->password);
         
             if ($user_create->save()) {
-                return redirect()->route('registration')->with('success', 'User created successfully');
+                return redirect()->route('login_view')->with('success', 'User created successfully');
             }
         }
     }

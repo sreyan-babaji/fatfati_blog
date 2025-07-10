@@ -198,7 +198,7 @@
                 <h5 class="modal-title" id="changePictureModalLabel">প্রোফাইল ছবি পরিবর্তন</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{route('profile_picture_update')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('profile_picture_update',$profile_data->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="image-upload-container text-center mb-3">
@@ -231,7 +231,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{route('profile_data_update')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('profile_data_update',$profile_data->id)}}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="mb-3">
                         <label for="Name" class="form-label">নাম</label>
                         <input type="text" name="name" class="form-control" id="Name" value="{{$profile_data->name}}">
@@ -254,17 +255,19 @@
                     </div>
                     <div class="mb-3">
                         <label for="website" class="form-label">ওয়েবসাইট</label>
-                        <input type="url"  name="website" class="form-control" id="website" value="www.ahsanhabib.com">
+                        <input  name="website" class="form-control" id="website" >
                     </div>
                     <div class="mb-3">
                         <label for="bio" class="form-label">বায়ো</label>
                         <textarea class="form-control"  name="biodata" id="bio" rows="3">আমি একজন ওয়েব ডেভেলপার এবং ব্লগার। নতুন প্রযুক্তি নিয়ে কাজ করতে ভালোবাসি।</textarea>
                     </div>
+                
+            
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বাতিল</button>
+                        <button type="submit" name="submit" class="btn btn-primary">পরিবর্তনসমূহ সংরক্ষণ করুন</button>
+                    </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বাতিল</button>
-                <button type="submit" name="submit" class="btn btn-primary">পরিবর্তনসমূহ সংরক্ষণ করুন</button>
             </div>
         </div>
     </div>
@@ -279,7 +282,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{route('password_update')}}" method="POST">
+                <form action="{{route('password_update',$profile_data->id)}}" method="POST">
                     <div class="mb-3">
                         <label for="currentPassword" class="form-label">বর্তমান পাসওয়ার্ড</label>
                         <input type="password" name="current_password" class="form-control" id="currentPassword">

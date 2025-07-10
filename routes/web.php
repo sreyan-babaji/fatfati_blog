@@ -33,9 +33,9 @@ route::get('logout',[Authentication::class,'logout'])->name('logout');
 route::get('dashboard',[DashboardController::class,'admin_dashboard'])->name('dashboard');
 //profile view
 route::get('profile/{user_id}',[ProfileController::class,'profile'])->name('profile');
-route::post('profile-picture-update',[ProfileController::class,'profile_picture_update'])->name('profile_picture_update');
-route::post('profile-data-update',[ProfileController::class,'profile_data_update'])->name('profile_data_update');
-route::post('password-update',[ProfileController::class,'password_update'])->name('password_update');
+route::post('profile-picture-update/{user_id}',[ProfileController::class,'profile_picture_update'])->name('profile_picture_update');
+route::post('profile-data-update/{user_id}',[ProfileController::class,'profile_data_update'])->name('profile_data_update');
+route::post('password-update/{user_id}',[ProfileController::class,'password_update'])->name('password_update');
 //Category
 route::post('category-search',[CategoryController::class,'category_search'])->name('search_category'); // seame hoye gese . u
 route::get('category-manage',[CategoryController::class,'category_manage'])->name('category_manage');

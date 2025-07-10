@@ -18,7 +18,7 @@ class ProfileController extends Controller
         $title="profile";
         return view('admin.profile',compact('profile_data','user_role_data','title'));
     }
-    public function profile_picture_update($user_id){
+    public function profile_picture_update(Request $request ,$user_id){
         $profile_data=User::find($user_id);
 
         $profile_data->profile_pic_url = $request->profile_picture;
@@ -26,12 +26,12 @@ class ProfileController extends Controller
             return redirect()->back()->with('success', 'picture update successfully');
         } 
     }
-    public function profile_data_update($user_id){
+    public function profile_data_update(Request $request,$user_id){
         $profile_data=User::find($user_id);
         $profile_data->name = $request->name;
         $profile_data->email  = $request->email;
          if ($profile_data->update()) {
-            return redirect()->back()->with('success', 'profile data successfully');
+            return redirect()->back()->with('success', 'profile data update successfully');
         } 
     }
     public function password_update(Request $request ,$user_id){

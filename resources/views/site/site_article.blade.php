@@ -51,7 +51,7 @@
                                 @endphp
                                 {{ $trimmedContent }}
                             </p>
-                            <a href="category-posts.html" class="btn outline-primary">পোস্ট দেখুন </a>
+                            <a href="{{route('post_show',$post->id)}}" class="btn outline-primary">পোস্ট দেখুন </a>
                         </div>
                     </div>
                 </div>

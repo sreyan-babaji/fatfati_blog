@@ -29,6 +29,8 @@ class BlogSiteController extends Controller
         $post_data=Post::Paginate(4);
         foreach($post_data as $post){
             $post->short_content = Str::limit($post->post_content, 180,'');
+            $post->category_data=Category::where('id',$post->post_category)->first();
+            $post->category_name=$post->category_data->category_name;
         }
         $title="home page";
         return view('site.blog_home',compact('post_data','title','category_data')); 

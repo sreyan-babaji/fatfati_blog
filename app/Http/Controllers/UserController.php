@@ -22,6 +22,10 @@ class UserController extends Controller
   //user management
   public function users(){
     $user_data = User::paginate(8);
+    foreach($user_data as $user){
+        $role=UserRole::where('id',$user->user_role)->first();
+        $user->role_name=$role->role_name ?? 'Not assigned';
+    }
     $title='users';
         return view('admin.users',compact('user_data','title'));
     }
