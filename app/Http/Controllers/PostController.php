@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Request\postValidation;
 
 class PostController extends Controller
 {
@@ -110,40 +111,24 @@ class PostController extends Controller
         return view('admin.post_edit',compact('postdata','categories','category_data'),['title' => 'edit_post']);
     }
     //Post edit update
-    public function post_update(Request $request, $post_id){
-        // Step 1: validate the post
-            $validator = Validator::make($request->all(), [
-            'post_title'    => 'required|string|max:250',
-            'post_category' => 'required|string|max:100',
-            'post_content'  => 'required|string',
-        ], [
-            'post_title.required'    => '! পোষ্টের টাইটেল দিন',
-            'post_title.string'      => '! পোষ্ট টাইটেল অক্ষরের হতে হবে',
-            'post_title.max'         => '! পোষ্ট টাইটেল ২৫০ অক্ষরের বেশি হতে পারবে না',
+    public function post_update(postValidation $request, $post_id){
+    
+        $validateData= $request->validate();
 
-            'post_category.required' => '! পোষ্ট ক্যাটাগরি দিন',
-            'post_category.string'   => '! পোষ্ট ক্যাটাগরি অক্ষরের হতে হবে',
-            'post_category.max'      => '! পোষ্ট ক্যাটাগরি ১০০ অক্ষরের বেশি হতে পারবে না',
+        $post_input =  Post::find($post_id);
 
-            'post_content.required'  => '! পোষ্ট কন্টেন্ট দিন',
-            'post_content.string'    => '! পোষ্ট কন্টেন্ট অক্ষরের হতে হবে',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        if($validator->passes()){
-            $post_input =  Post::find($post_id);
-            $post_input->post_title    = $request->post_title;
-            $post_input->post_category = $request->post_category;
-            $post_input->post_content  = $request->post_content;
-            if ($post_input->update()) {
-                return redirect()->route('blog_post_view',$post_id)->with('success', 'Post update successfully');
-            } 
-        }
+        $post_input->update($request->validate());
+        Post::update(
+            [
+               'post_title' => 
+            ]
+        );
+        $post_input->post_title    = $validateData['post_title'];
+        $post_input->post_category = $validateData['post_category'];
+        $post_input->post_content  = $validateData['post_content'];
+        if ($post_input->update()) {
+            return redirect()->route('blog_post_view',$post_id)->with('success', 'Post update successfully');
+        } 
     }
      //post delete
     public function post_delete($post_id){

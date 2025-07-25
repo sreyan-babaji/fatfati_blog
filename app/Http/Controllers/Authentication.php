@@ -87,9 +87,9 @@ class Authentication extends Controller
         if($validator->fails()){
             return redirect()->back()->witherrors($validator)->withinput();
         }
-
+        $valid_data= $validator->validate();
         if($validator->passes()){
-            if(Auth::attempt(['email' =>$request->email, 'password' => $request->password])){
+            if(Auth::attempt(['email' =>$valid_data['email'], 'password' => $valid_data['password']])){
                 if(Auth::User()->user_role=='1'){
                     return redirect()->route('dashboard');
                 }
