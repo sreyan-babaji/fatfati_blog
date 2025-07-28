@@ -14,7 +14,10 @@ class DashboardController extends Controller
 {
    public function admin_dashboard(){
         if(Auth::check() and Auth::User()->user_role=='1'){
-            $all_post=Post::paginate(10);
+
+           $all_post = Post::where('author', Auth::user()->name)->paginate(10);
+
+            //$all_post=Post::paginate(10);
             foreach ($all_post as $post) {
                 $postcategorydata = Category::where('id',$post->post_category)->first();
                 $post->postcategoryname = $postcategorydata->category_name;
