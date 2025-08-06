@@ -54,7 +54,7 @@
                             </ul>
                         </div>   
                         @else
-                            <a class="nav-link" href="{{ route('login_view') }}">
+                            <a class="nav-link" href="{{ route('login') }}">
                                 <i class="bi bi-box-arrow-in-right me-2"></i> লগ ইন
                             </a>
                         @endif
@@ -97,7 +97,38 @@
         </div>
     </footer>
 
+
+     @if(session('success'))
+    <div class="position-fixed top-0 end-0 p-3" style="z-index: 9999">
+        <div class="alert alert-success alert-dismissible fade show" role="alert" id="flash-message">
+            <i class="bi bi-check-circle me-2"></i> {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    <script>
+        setTimeout(function() {
+            document.getElementById('flash-message').style.display = 'none';
+        }, 2000);
+    </script>
+    @endif
+
+    <!-- Flash failed Message (Positioned at top-right) -->
+    @if(session('falied'))
+    <div class="position-fixed top-0 end-0 p-3" style="z-index: 9999">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" id="flash-message">
+            <i class="bi bi-check-circle me-2"></i> {{ session('falied') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    <script>
+        setTimeout(function() {
+            document.getElementById('flash-message').style.display = 'none';
+        }, 2000);
+    </script>
+    @endif
+    
     <!-- Bootstrap JS Bundle with Popper -->
+     @stack('scripts')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="assets/js/blog_site.js"></script>
     <<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>

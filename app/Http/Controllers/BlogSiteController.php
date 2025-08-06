@@ -26,14 +26,15 @@ class BlogSiteController extends Controller
          foreach ($category_data as $category) {
             $category->post_count = Post::where('post_category', $category->id)->count();
         }
-        $post_data=Post::Paginate(4);
+        $post_data=Post::with('comments')->Paginate(4);
         foreach($post_data as $post){
             $post->short_content = Str::limit($post->post_content, 180,'');
             $post->category_data=Category::where('id',$post->post_category)->first();
             $post->category_name=$post->category_data->category_name;
         }
+        $comm= session('pending_comment');
         $title="home page";
-        return view('site.blog_home',compact('post_data','title','category_data')); 
+        return view('site.blog_home',compact('post_data','title','category_data','comm')); 
     }
 
     //article

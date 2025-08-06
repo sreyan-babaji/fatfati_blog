@@ -21,23 +21,24 @@ Route::get('category',[BlogSiteController::class,'site_category'])->name('site_c
 Route::get('about',[BlogSiteController::class,'site_about'])->name('site_about');
 Route::get('contact',[BlogSiteController::class,'site_contact'])->name('site_contact');
 
+Route::post('comment-store/{post_id}',[CommentController::class,'comment_store'])->middleware('comment')->name('comment.store');
 
 /*-------admin pannel all route-----------*/
 //authentication
 route::get('registration',[Authentication::class,'registration'])->name('registration');
 route::post('user-create',[Authentication::class,'user_create'])->name('user_create');
-route::get('login-view',[Authentication::class,'login_view'])->name('login_view');
+route::get('login',[Authentication::class,'login'])->name('login');
 route::post('loged_in',[Authentication::class,'loged_in'])->name('loged_in');
 route::get('logout',[Authentication::class,'logout'])->name('logout');
 //dashboard
-route::get('dashboard',[DashboardController::class,'admin_dashboard'])->name('dashboard');
+route::get('dashboard',[DashboardController::class,'admin_dashboard'])->name('dashboard')->middleware('admin');
 //profile view
 route::get('profile/{user_id}',[ProfileController::class,'profile'])->name('profile');
 route::post('profile-picture-update/{user_id}',[ProfileController::class,'profile_picture_update'])->name('profile_picture_update');
 route::post('profile-data-update/{user_id}',[ProfileController::class,'profile_data_update'])->name('profile_data_update');
 route::post('password-update/{user_id}',[ProfileController::class,'password_update'])->name('password_update');
 //Category
-route::post('category-search',[CategoryController::class,'category_search'])->name('search_category'); // seame hoye gese . u
+route::post('category-search',[CategoryController::class,'category_search'])->name('search_category'); 
 route::get('category-manage',[CategoryController::class,'category_manage'])->name('category_manage');
 route::get('category-edit-view/{category_id}',[CategoryController::class,'category_edit_view'])->name('category_edit_view');
 route::post('category-update/{category_id}',[CategoryController::class,'category_update'])->name('category_update');

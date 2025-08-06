@@ -42,7 +42,7 @@
                 @if(Auth::check())
                 <a href="{{ route('logout') }}"><i class="bi bi-box-arrow-right"></i> লগ আউট</a>
                 @else
-                <a href="{{ route('login_view') }}"><i class="bi bi-box-arrow-right"></i> লগ ইন</a>
+                <a href="{{ route('login') }}"><i class="bi bi-box-arrow-right"></i> লগ ইন</a>
                 @endif
             </li>
         </ul>
@@ -86,7 +86,7 @@
                         
                     </ul>
                     @else
-                    <a class="dropdown-item" href="{{ route('login_view') }}"><i class="bi bi-box-arrow-right me-2"></i> লগ ইন</a>
+                    <a class="dropdown-item" href="{{ route('login') }}"><i class="bi bi-box-arrow-right me-2"></i> লগ ইন</a>
                     @endif
                 </div>
             </div>

@@ -64,7 +64,7 @@ class Authentication extends Controller
 
 
     //login_view
-    public function login_view(){
+    public function login(){
         return view('auth.login'); 
     }
 
@@ -90,21 +90,16 @@ class Authentication extends Controller
         $valid_data= $validator->validate();
         if($validator->passes()){
             if(Auth::attempt(['email' =>$valid_data['email'], 'password' => $valid_data['password']])){
-                if(Auth::User()->user_role=='1'){
-                    return redirect()->route('dashboard');
-                }
-                else{
-                    return redirect()->route('home');
-                }
+                return redirect()->intended('ghtfgh');
             }
             else{
-                return redirect()->route('login_view');
+                return redirect()->route('login');
             }
         }
     }
 
     public function logout(){
         Auth::logout();
-        return redirect()->route('login_view')->with('success', 'User logout successfully');
+        return redirect()->back()->with('success', 'User logout successfully');
     }
 }

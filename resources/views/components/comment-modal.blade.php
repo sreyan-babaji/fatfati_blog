@@ -1,14 +1,7 @@
 
-
-
-
-
-
-
-
 @props(['content_id'])
 <!-- Comments Modal -->
-<div class="modal fade" id="commentsModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="commentsModal{{ $content_id }}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">

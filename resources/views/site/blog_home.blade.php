@@ -56,7 +56,7 @@
             <div class="col-lg-8">
                 <h2 class="mb-4">সাম্প্রতিক পোস্ট</h2>
 
-
+{{$comm}}
 
                 <!-- ব্লগ কার্ড 1 -->
                  @foreach($post_data as $post)
@@ -92,13 +92,15 @@
                             </small>
                             </div>
                              <a href="javascript:void(0)" class="text-decoration-none  me-2 comment" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#commentsModal{{ $post->id }}"
                                 onclick="showComments({{ $post->id }})">
                                 <i class="fas fa-comment"></i> 20 টি কমেন্ট
                             </a>
                         </div>
                     </div>
                 </div>
-                <x-comment-modal  :content_id="$post->id" />
+                <x-comments-model  :post="$post" :post_id="$post->id"/>
                 @endforeach
 
                 <!-- পেজিনেশন -->

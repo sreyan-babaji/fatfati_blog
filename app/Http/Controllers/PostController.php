@@ -113,22 +113,14 @@ class PostController extends Controller
     //Post edit update
     public function post_update(postValidation $request, $post_id){
     
-        $validateData= $request->validate();
+        $validateData= $request->validated();
 
         $post_input =  Post::find($post_id);
 
-        $post_input->update($request->validate());
-        Post::update(
-            [
-               'post_title' => 
-            ]
-        );
-        $post_input->post_title    = $validateData['post_title'];
-        $post_input->post_category = $validateData['post_category'];
-        $post_input->post_content  = $validateData['post_content'];
-        if ($post_input->update()) {
+        if ($post_input && $post_input->update($validateData)) {
             return redirect()->route('blog_post_view',$post_id)->with('success', 'Post update successfully');
         } 
+        else{return redirect()->back();}
     }
      //post delete
     public function post_delete($post_id){
