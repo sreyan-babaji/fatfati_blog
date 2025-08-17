@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('author')->nullable();
             $table->enum('post_status', ['published', 'draft', 'pending'])->default('draft');
             $table->string('slug');
+            $table->string('clicked')->nullable();
             $table->timestamps();
         });
     }

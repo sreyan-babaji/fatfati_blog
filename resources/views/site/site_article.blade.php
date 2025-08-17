@@ -3,12 +3,13 @@
   <!-- ব্লগ হেডার -->
     <header class="blog-header text-center mb-5">
         <div class="container ">
-            @if(Route::is('site_article'))
-             <h1 class="display-4 fw-bold">আমাদের ব্লগ</h1>
-             <p class="lead">প্রযুক্তি, ভ্রমণ এবং জীবনযাপন নিয়ে নতুন নতুন পোস্ট</p>
+            @if(Route::is('site_category_search'))
+                <h1 class="display-4 fw-bold">ক্যাটাগরি : {{$post_data->first()->category_name}}</h1>
             @elseif(Route::is('search'))
              <h1 class="display-4 fw-bold">সার্চ রিজাল্ট</h1>
              @else
+             <h1 class="display-4 fw-bold">আমাদের ব্লগ</h1>
+             <p class="lead">প্রযুক্তি, ভ্রমণ এবং জীবনযাপন নিয়ে নতুন নতুন পোস্ট</p>
             @endif
         </div>
         <div class="row justify-content-end">
@@ -31,10 +32,10 @@
                 @foreach($post_data as $post)
                 <div class="col-md-6 col-lg-4">
                     <div class="card category-card">
-                        <img src="assets/img/feature-1.jpg" class="card-img-top category-img" alt="প্রযুক্তি">
+                        <img src="{{asset('assets/img/feature-1.jpg')}}" class="card-img-top category-img" alt="প্রযুক্তি">
                         <div class="card-body text-center">
                             <div class="d-flex justify-content-between mb-2">
-                                <span class="badge">প্রযুক্তি</span>
+                                <span class="badge">{{$post->category_name}}</span>
                                 <small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
 						    </div>
                             <h5 class="card-title">{{$post->post_title}}</h5>

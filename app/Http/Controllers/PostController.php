@@ -96,12 +96,20 @@ class PostController extends Controller
             return redirect()->back()->with('failed', 'Post creation failed');
         }
     }
+    //post approve
+    public function post_approve($post_id){
+        $post=Post::find($post_id);
+        $post->post_status='published';
+        $post->update();
+        return redirect()->back()->with('success','post approved successfully');
+    }
     //post view
     public function blog_post_view($post_id){
         $postdata=Post::where('id',$post_id)->first();
         $category_data = Category::select('id','category_name')->where('id',$postdata->post_category)->first();
         return view('admin.blog_post_view',compact('postdata','category_data'),['title' => 'view_post']);
     }
+    
     //post edit view
     public function post_edit_view($post_id){
         $postdata=Post::where('id',$post_id)->first();

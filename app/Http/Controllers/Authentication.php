@@ -90,11 +90,29 @@ class Authentication extends Controller
         $valid_data= $validator->validate();
         if($validator->passes()){
             if(Auth::attempt(['email' =>$valid_data['email'], 'password' => $valid_data['password']])){
-                return redirect()->intended('ghtfgh');
+                return redirect()->intended('destiny');
             }
             else{
                 return redirect()->route('login');
             }
+        }
+    }
+
+    public function destiny(){
+        if(!Auth::check()){
+            return redirect()->route('login');
+        }
+        if(Auth::user()->user_role==3){
+            return redirect()->route('home');
+        }
+        if(Auth::user()->user_role==2){
+            return redirect()->route('post_management');
+        }
+        if(Auth::user()->user_role==1){
+            return redirect()->route('dashboard');
+        }
+        else{
+            return redirect()->route('home');
         }
     }
 

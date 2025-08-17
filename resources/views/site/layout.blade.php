@@ -7,15 +7,15 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <!-- Custom CSS -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
 </head>
 <body data-bs-spy="scroll" data-bs-target=".navbar" class='body'>
     
     <!-- নেভিগেশন বার -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-top mb-4" id="mainNavbar">
         <div class="container-fluid ">
-            <a class=" navbar-brand fw-bold" href="{{ route('home') }}"><img src="assets/img/logo.png" class="logo"></a>
+            <a class=" navbar-brand fw-bold" href="{{ route('home') }}"><img src="{{asset('assets/img/logo.png')}}" class="logo"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -96,8 +96,6 @@
             <p class="mb-0 text-center">&copy; ২০২৩ আমার ব্লগ। সকল স্বত্ব সংরক্ষিত।</p>
         </div>
     </footer>
-
-
      @if(session('success'))
     <div class="position-fixed top-0 end-0 p-3" style="z-index: 9999">
         <div class="alert alert-success alert-dismissible fade show" role="alert" id="flash-message">
@@ -130,7 +128,7 @@
     <!-- Bootstrap JS Bundle with Popper -->
      @stack('scripts')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="assets/js/blog_site.js"></script>
-    <<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{asset('assets/js/blog_site.js')}}"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>

@@ -9,36 +9,26 @@
             <button type="button" data-bs-target="#blogCarousel" data-bs-slide-to="2"></button>
         </div>
         <div class="carousel-inner">
-            <!-- ক্যারousel আইটেম 1 -->
-            <div class="carousel-item ">
-                <img src="assets/img/carousel-1.png" class="d-block w-100" alt="প্রযুক্তি ব্লগ">
-                <div class="carousel-caption">
-                    <h2>প্রযুক্তি ব্লগ</h2>
-                    <p>আধুনিক প্রযুক্তি নিয়ে সর্বশেষ আপডেট এবং টিউটোরিয়াল</p>
-                    <a href="#" class="btn btn-primary btn-lg">পড়ুন</a>
-                </div>
-            </div>
             
-            <!-- ক্যারousel আইটেম 2 -->
-            <div class="carousel-item">
-                <img src="assets/img/carousel-2.jpg" class="d-block w-100" alt="ভ্রমণ ব্লগ">
-                <div class="carousel-caption">
-                    <h2>ভ্রমণ ব্লগ</h2>
-                    <p>বাংলাদেশের সুন্দর স্থানগুলোর অভিজ্ঞতা শেয়ার</p>
-                    <a href="#" class="btn btn-primary btn-lg">পড়ুন</a>
+            @foreach($carosels as $carosel)
+                @if(in_array($carosel->carosel_select, ['first', 'second', 'third']))
+                <!-- ক্যারousel আইটেম 1 -->
+                <div class="carousel-item {{$carosel->carosel_select=='first'? 'active':''}}">
+                    <img src="{{ asset('storage/category/' . $carosel->category->category_img) }}" class="d-block w-100" alt="প্রযুক্তি ব্লগ">
+                    <div class="carousel-caption">
+                        <h2>{{$carosel->category-> category_name}}</h2>
+                        <p>{{$carosel->category-> category_description}}</p>
+                        <a href="{{route('site_category_search',$carosel->categories_id)}}" class="btn btn-primary btn-lg">পড়ুন</a>
+                    </div>
                 </div>
-            </div>
+                @endif
+            @endforeach
             
-            <!-- ক্যারousel আইটেম 3 -->
-            <div class="carousel-item active">
-                <img src="assets/img/carousel-3.jpg" class="d-block w-100" alt="জীবনযাপন টিপস">
-                <div class="carousel-caption">
-                    <h2>জীবনযাপন টিপস</h2>
-                    <p>দৈনন্দিন জীবনের জন্য উপকারী টিপস এবং পরামর্শ</p>
-                    <a href="#" class="btn btn-primary btn-lg">পড়ুন</a>
-                </div>
-            </div>
+            
+    
+
         </div>
+        
         <button class="carousel-control-prev" type="button" data-bs-target="#blogCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon"></span>
             <span class="visually-hidden">পূর্ববর্তী</span>
@@ -56,7 +46,7 @@
             <div class="col-lg-8">
                 <h2 class="mb-4">সাম্প্রতিক পোস্ট</h2>
 
-{{$comm}}
+
 
                 <!-- ব্লগ কার্ড 1 -->
                  @foreach($post_data as $post)
@@ -88,21 +78,56 @@
                             <div>
                             <a href="{{route('post_show',$post->id)}}" class="btn outline-primary" >পড়ুন</a>
                             <small class="text-muted">
-                                <i class="fas fa-eye me-1"></i> ১৫৪ বার দেখা হয়েছে
+                                <i class="fas fa-eye me-1"></i> {{$post->clicked==0 ? '0' : $post->clicked}} বার দেখা হয়েছে
                             </small>
                             </div>
                              <a href="javascript:void(0)" class="text-decoration-none  me-2 comment" 
                                 data-bs-toggle="modal" 
                                 data-bs-target="#commentsModal{{ $post->id }}"
                                 onclick="showComments({{ $post->id }})">
-                                <i class="fas fa-comment"></i> 20 টি কমেন্ট
+                                <i class="fas fa-comment"></i> {{$post->comments->count()}} টি কমেন্ট
                             </a>
                         </div>
                     </div>
                 </div>
-                <x-comments-model  :post="$post" :post_id="$post->id"/>
-                @endforeach
 
+                @if(session()->has('commented'))
+                    @php
+                        $post_id=session('commented');
+                    @endphp
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                        // মডেলটির আইডি পেতে পোস্টের আইডি ব্যবহার করা হয়েছে
+                        const postId = {{ $post_id }};
+                        const modalElement = document.getElementById(`commentsModal${postId}`);
+                        
+                        // যদি মডেলটি পাওয়া যায়, তবে এটি খুলে দিন
+                        if (modalElement) {
+                            const myModal = new bootstrap.Modal(modalElement);
+                            myModal.show();
+                        }
+
+                        // সব মডেলের জন্য hidden ইভেন্ট হ্যান্ডলার
+                        document.querySelectorAll('.modal').forEach(function (modalEl) {
+                            modalEl.addEventListener('hidden.bs.modal', function () {
+                                // backdrop remove
+                                document.querySelectorAll('.modal-backdrop').forEach(e => e.remove());
+                                // body থেকে modal-open ক্লাস সরানো
+                                document.body.classList.remove('modal-open');
+                                // body এর padding-right সরানো
+                                document.body.style.removeProperty('padding-right');
+                                // স্ক্রল ফেরানো
+                                document.body.style.overflow = '';
+                            });
+                        });
+                    });
+                    </script>
+                    
+                <x-comments-model  :post="$post"  :post_id="$post_id"/>
+                @endif
+                <x-comments-model  :post="$post" :post_id="$post->id" />
+                @endforeach
+                
                 <!-- পেজিনেশন -->
                     {{ $post_data->onEachSide(2)->links() }}
 
@@ -133,7 +158,7 @@
                         <ul class="list-group list-group-flush">
                             @foreach($category_data as $category)
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                {{$category->category_name}}
+                                <a href="{{route('site_category_search',$category->id)}}">{{$category->category_name}}</a>
                                 <span class="badge bg-primary rounded-pill">{{ $category->post_count }}</span>
                             </li>
                             @endforeach

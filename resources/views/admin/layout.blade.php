@@ -20,24 +20,36 @@
             <h3><i class="bi bi-journal-bookmark-fill"></i> ব্লগ এডমিন</h3>
         </div>
         <ul class="sidebar-menu">
+            @if(Auth::check() and Auth::user()->user_role==1)
             <li class="{{ Route::is('dashboard') ? 'active' : '' }}">
                 <a href="{{ route('dashboard') }}"><i class=" bi bi-speedometer2"></i> ড্যাশবোর্ড</a>
             </li>
+            @endif
+            @if(Auth::check() and (Auth::user()->user_role==2 or Auth::user()->user_role==1) )
             <li class="{{ Route::is('post_management','post_create_view','blog_post_view','post_edit_view') ? 'active' : '' }}">
                 <a href="{{ route('post_management') }}"><i class="bi bi-file-earmark-text"></i> পোস্ট ম্যানেজমেন্ট</a>
             </li>
+
             <li class="{{ Route::is('category_manage','category_create_view','search_category','category_edit_view') ? 'active' : '' }}">
                 <a href="{{ route('category_manage') }}"><i class="bi bi-grid"></i> ক্যাটাগরি</a>
             </li>
+
+             <li class="{{ Route::is('comments') ? 'active' : '' }}">
+                <a href="{{ route('comments') }}"><i class="bi bi-chat-left-text"></i> কমেন্টস</a>
+            </li>
+            <li class="{{ Route::is('carosel.index') ? 'active' : '' }}">
+                <a href="{{ route('carosel.index') }}"><i class="bi bi-chat-left-text"></i> কেরোসেল</a>
+            </li>
+            @endif
+            @if(Auth::check() and Auth::user()->user_role==1)
             <li class="{{ Route::is('users') ? 'active' : '' }}">
                 <a href="{{ route('users') }}"><i class="bi bi-people"></i> ব্যবহারকারী</a>
             </li>
-            <li class="{{ Route::is('comments') ? 'active' : '' }}">
-                <a href="{{ route('comments') }}"><i class="bi bi-chat-left-text"></i> কমেন্টস</a>
-            </li>
+
             <li class="{{ Route::is('settings') ? 'active' : '' }}">
                 <a href="{{ route('settings') }}"><i class="bi bi-gear"></i> সেটিংস</a>
             </li>
+            @endif
             <li>
                 @if(Auth::check())
                 <a href="{{ route('logout') }}"><i class="bi bi-box-arrow-right"></i> লগ আউট</a>

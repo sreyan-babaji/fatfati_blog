@@ -19,7 +19,17 @@
                     <div class="card-body text-center">
                         <h3 class="card-title">{{$category->category_name}}</h3>
                         <p class="card-text">{{$category->category_description}}</p>
-                        <a href="category-posts.html" class="btn bt-primary">পোস্ট দেখুন <span class="badge bg-light text-dark">{{ $category->post_count }}</span></a>
+                        <a href="{{route('site_category_search',$category->id)}}" class="btn bt-primary">পোস্ট দেখুন <span class="badge bg-light text-dark">{{ $category->post_count }}</span></a>
+                        @if(Auth::check() and (Auth::user()->user_role=='1' or Auth::user()->user_role=='2')) 
+                        <div class="d-flex justify-content-between mt-2">
+                            <a class="btn bt-primary" href="#">set carosel selected</a>
+                            <form action="{{ route('carosel.store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="category_id" value="{{ $category->id }}">
+                                <button type="submit" class="btn bt-primary">add carosel</button>
+                            </form>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -74,7 +74,16 @@
                             @elseif($postdata->post_status == 'draft')
                             <td><span class="badge-draft ">Draft</span></td>
                             @elseif($postdata->post_status == 'pending')
-                            <td><span class="bg-success rounded-pill text-white p-2">Pending</span></td>
+                            <td>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="bg-success rounded-pill text-white p-2">Pending</span>
+                                    <a href="{{ route('post_approve',$postdata->id) }}" class="ms-1 mt-1 btn btn-sm btn-view btn-action ">
+                                        <i class="bi bi-check-circle"></i>
+                                    </a>
+                                </div>
+                            </td>
+
+
                             @else
                             <td class="">No Status</td>
                             @endif

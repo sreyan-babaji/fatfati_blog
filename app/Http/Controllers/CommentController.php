@@ -11,22 +11,19 @@ class CommentController extends Controller
         
         return view('admin.comments',['title' => 'comments']);
     }
-    
-
-
 
     public function comment_store(Request $request, $post_id)
     {
         
         if (session()->has('pending_comment')) {
             $comment = new Comment();
-            $comment->post_id = session()->pull('comment_post_id');
+            $comment->post_id = session()->get('comment_post_id');
             $comment->user_id = auth()->id(); 
             $comment->content = session()->pull('pending_comment');
             $comment->status = 'pending';
             $comment->save(); 
-
-            return redirect()->back()->with('success', 'Comment posted after login!');
+            //comment componene paite: ->with('commented',session()->pull('comment_post_id'))
+            return redirect()->route('post_show',session()->pull('comment_post_id'))->with('success', 'Comment posted after login!');
         }
 
         
@@ -41,7 +38,12 @@ class CommentController extends Controller
         $comment->status = 'pending';
         $comment->save();
 
-        return redirect()->back()->with('success', 'Comment posted!');
+        return redirect()->back()->with('success', 'Comment posted!')->with('commented',$post_id);
+    }
+    public function comment_delete($post_id){
+        $comment=Comment::find($post_id);
+        $comment->delete();
+        return redirect()->back()->with('success','comment deleted successfuly');
     }
 
 }

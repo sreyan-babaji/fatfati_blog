@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Carosel;
 
 class Category extends Model
 {
            use HasFactory; 
 
     protected $fillable = [
-        'id',
+        
         'category_name',
         'category_description',
         'category_slug',
@@ -18,4 +19,7 @@ class Category extends Model
         'updated_at',
         'created_at'
     ];
+    public function carosel(){
+        return $this->hasmany(Carosel::class);
+    }
 }

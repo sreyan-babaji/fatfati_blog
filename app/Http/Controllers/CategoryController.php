@@ -34,10 +34,17 @@ class CategoryController extends Controller
 
      //category create input/store
     public function category_create_input(Request $request){
+        
        $category_input = new Category();
        $category_input->category_name = $request->category_name;
        $category_input->category_description = $request->category_description;
        $category_input->category_slug = $request->category_slug;
+       if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('category', $imagename, 'public');
+            $category_input->category_img = $imagename;
+        }
         
         if($category_input->save()){
            return redirect()->route('category_manage')->with('success', 'ক্যাটাগরি সফলভাবে তৈরি করা হয়েছে!');

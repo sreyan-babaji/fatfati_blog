@@ -19,7 +19,8 @@ class Post extends Model
         'post_content',
         'post_status',
         'author',
-        'slug'
+        'slug',
+        'clicked'
     ];
 
     public function author(): BelongsTo

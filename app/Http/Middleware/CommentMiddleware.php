@@ -22,6 +22,7 @@ class CommentMiddleware
             session()->put('comment_post_id', $post_id);
            // session()->put('url.intended', url()->previous());
            session()->put('url.intended', route('comment.store', ['post_id' => $request->route('post_id')]));
+           
             return redirect()->route('login');
         }
         return $next($request);

@@ -10,7 +10,7 @@
 
         <!-- ফর্ম কার্ড -->
         <div class="form-card">
-            <form action="{{ route('category_create_input')}}" method="POST">
+            <form action="{{ route('category_create_input')}}" method="POST" enctype="multipart/form-data">
             @csrf
                 <!-- বেসিক ইনফো সেকশন -->
                 <div class="form-section">
@@ -32,14 +32,9 @@
                 </div>
 
                 <!-- ইমেজ সেকশন -->
-                <div class="form-section">
-                    <h4><i class="bi bi-image me-2"></i> ক্যাটাগরি ইমেজ</h4>
-                    <div class="image-upload-container" id="imageUploadContainer">
-                        <i class="bi bi-cloud-arrow-up" style="font-size: 2rem; color: var(--primary-medium);"></i>
-                        <p class="mt-3">ইমেজ এখানে ড্রপ করুন অথবা ক্লিক করে সিলেক্ট করুন</p>
-                        <input type="file" id="categoryImage" accept="image/*" style="display: none;">
-                    </div>
-                    <img id="imagePreview" class="image-preview" alt="Image Preview">
+                <div class="mb-3">
+                    <label for="image" class="form-label">ইমেজ নির্বাচন করুন:</label>
+                    <input class="form-control" type="file" name="image" id="image" accept="image/*" required>
                 </div>
 
                 <!-- সেটিংস সেকশন -->
